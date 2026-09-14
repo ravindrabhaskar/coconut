@@ -1,0 +1,184 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------------
+   DESIGN TOKENS — single source of truth (see docs/04-design-system.md)
+   ------------------------------------------------------------------------ */
+@theme {
+  /* Colour */
+  --color-coconut-950: #0b1a12;
+  --color-coconut-900: #12291c;
+  --color-coconut-800: #1c3a28;
+  --color-coconut-700: #26512f;
+  --color-leaf-500: #4f7f3a;
+  --color-leaf-400: #7ea55f;
+  --color-leaf-300: #a9c58e;
+  --color-leaf-200: #cfe0bd;
+  --color-ivory-50: #fbf8f1;
+  --color-ivory-100: #f4efe3;
+  --color-ivory-200: #ebe3d1;
+  --color-cocos: #fffdf8;
+  --color-fibre-200: #e5d6bd;
+  --color-fibre-300: #d2bc98;
+  --color-fibre-500: #b08d5b;
+  --color-earth-700: #6b4a2e;
+  --color-earth-800: #4a3220;
+  --color-charcoal-900: #17181a;
+  --color-charcoal-800: #24262a;
+  --color-charcoal-700: #3a3d42;
+  --color-charcoal-600: #55595f;
+  --color-ink: #0a0a0a;
+  --color-neutral-50: #faf9f6;
+  --color-neutral-100: #f1efea;
+  --color-neutral-200: #e2dfd7;
+  --color-neutral-300: #c9c5bb;
+  --color-neutral-400: #a29e94;
+  --color-neutral-500: #77736a;
+  --color-neutral-600: #5a5750;
+  --color-neutral-700: #403e39;
+  --color-neutral-800: #2a2926;
+  --color-neutral-900: #1b1a18;
+  --color-amber-500: #c48a1f;
+  --color-slate-500: #4f6b8a;
+  --color-danger: #a83a2e;
+
+  /* Evidence semantic colours (always paired with a text label) */
+  --color-ev-verified: #4f7f3a;
+  --color-ev-sourced: #2f6b5a;
+  --color-ev-estimate: #b08d5b;
+  --color-ev-assumption: #c48a1f;
+  --color-ev-calculated: #4f6b8a;
+  --color-ev-expert: #6b4a2e;
+  --color-ev-research: #77736a;
+
+  /* Typography */
+  --font-display: var(--font-manrope), "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-inter), "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --text-display: clamp(3rem, 8vw, 7.5rem);
+  --text-h1: clamp(2.5rem, 5vw, 4.5rem);
+  --text-h2: clamp(1.9rem, 3.5vw, 3rem);
+  --text-h3: 1.5rem;
+  --text-h4: 1.125rem;
+  --text-body: 1.0625rem;
+  --text-body-lg: 1.25rem;
+  --text-caption: 0.8125rem;
+  --text-overline: 0.6875rem;
+  --text-data: 0.8125rem;
+  --text-badge: 0.625rem;
+
+  /* Radius */
+  --radius-data: 2px;
+  --radius-control: 6px;
+  --radius-media: 12px;
+
+  /* Motion */
+  --ease-narrative: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --duration-micro: 160ms;
+  --duration-ui: 320ms;
+  --duration-narrative: 900ms;
+
+  /* Layout */
+  --container-page: 1440px;
+  --spacing-section: clamp(4rem, 10vw, 9rem);
+}
+
+/* ------------------------------------------------------------------------
+   BASE
+   ------------------------------------------------------------------------ */
+:root {
+  color-scheme: light;
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+}
+
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+}
+
+body {
+  background: var(--color-ivory-50);
+  color: var(--color-neutral-900);
+  font-family: var(--font-sans);
+  font-size: var(--text-body);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection { background: var(--color-leaf-300); color: var(--color-coconut-950); }
+
+:focus-visible { outline: 2px solid var(--color-leaf-500); outline-offset: 3px; border-radius: 2px; }
+.dark :focus-visible, [data-theme="dark"] :focus-visible { outline-color: var(--color-leaf-300); }
+
+/* ------------------------------------------------------------------------
+   TYPOGRAPHY UTILITIES
+   ------------------------------------------------------------------------ */
+@utility t-display { font-family: var(--font-display); font-weight: 800; font-size: var(--text-display); line-height: 0.95; letter-spacing: -0.03em; }
+@utility t-h1 { font-family: var(--font-display); font-weight: 800; font-size: var(--text-h1); line-height: 1; letter-spacing: -0.02em; }
+@utility t-h2 { font-family: var(--font-display); font-weight: 700; font-size: var(--text-h2); line-height: 1.05; letter-spacing: -0.02em; }
+@utility t-h3 { font-family: var(--font-display); font-weight: 700; font-size: var(--text-h3); line-height: 1.2; letter-spacing: -0.01em; }
+@utility t-h4 { font-family: var(--font-display); font-weight: 600; font-size: var(--text-h4); line-height: 1.3; }
+@utility t-body-lg { font-size: var(--text-body-lg); line-height: 1.6; }
+@utility t-caption { font-size: var(--text-caption); line-height: 1.4; color: var(--color-neutral-500); }
+@utility t-overline { font-size: var(--text-overline); font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; line-height: 1; }
+@utility t-metric { font-family: var(--font-mono); font-weight: 500; font-variant-numeric: tabular-nums; letter-spacing: -0.02em; }
+@utility t-data { font-family: var(--font-mono); font-size: var(--text-data); font-variant-numeric: tabular-nums; }
+@utility t-badge { font-family: var(--font-mono); font-size: var(--text-badge); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
+@utility t-source { font-size: var(--text-caption); font-style: italic; color: var(--color-neutral-500); }
+@utility t-nav { font-size: 0.875rem; font-weight: 500; }
+@utility t-cta { font-size: 0.9375rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
+
+/* Prose for long-form */
+.prose-coconut { max-width: 68ch; }
+.prose-coconut p { margin-block: 0 1.1em; }
+.prose-coconut p:last-child { margin-bottom: 0; }
+.prose-coconut ul { margin: 0 0 1.1em 1.2em; list-style: disc; }
+.prose-coconut li { margin-block: 0.25em; }
+.prose-coconut strong { font-weight: 600; color: var(--color-neutral-900); }
+.dark .prose-coconut strong { color: var(--color-cocos); }
+
+/* Section surfaces */
+.surface-dark { background: var(--color-coconut-950); color: var(--color-ivory-100); position: relative; }
+.surface-dark::after { content: ""; position: absolute; inset: 0; background-image: var(--grain); opacity: 0.045; pointer-events: none; mix-blend-mode: overlay; }
+.surface-charcoal { background: var(--color-charcoal-900); color: var(--color-ivory-100); position: relative; }
+.surface-charcoal::after { content: ""; position: absolute; inset: 0; background-image: var(--grain); opacity: 0.05; pointer-events: none; }
+.surface-ivory { background: var(--color-ivory-50); color: var(--color-neutral-900); }
+.surface-white { background: var(--color-cocos); color: var(--color-neutral-900); }
+.surface-fibre { background: linear-gradient(180deg, var(--color-ivory-100), var(--color-fibre-200)); color: var(--color-neutral-900); }
+
+/* Fibre line pattern (subtle) */
+.pattern-fibre { background-image: repeating-linear-gradient(115deg, rgba(176, 141, 91, 0.08) 0 1px, transparent 1px 9px); }
+
+/* Blueprint grid */
+.pattern-blueprint { background-color: #0f2233; background-image: linear-gradient(rgba(169, 197, 142, 0.12) 1px, transparent 1px), linear-gradient(90deg, rgba(169, 197, 142, 0.12) 1px, transparent 1px); background-size: 24px 24px; }
+
+/* Hairline */
+.hairline { border-color: var(--color-neutral-200); }
+.dark .hairline, .surface-dark .hairline, .surface-charcoal .hairline { border-color: rgba(255, 255, 255, 0.12); }
+
+/* Tables */
+.table-data { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+.table-data th { text-align: left; font-weight: 600; font-size: var(--text-overline); letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-neutral-500); padding: 0.6rem 0.75rem; border-bottom: 1px solid var(--color-neutral-200); }
+.table-data td { padding: 0.65rem 0.75rem; border-bottom: 1px solid var(--color-neutral-200); vertical-align: top; }
+.table-data tr:last-child td { border-bottom: 0; }
+.surface-dark .table-data th, .surface-dark .table-data td, .surface-charcoal .table-data th, .surface-charcoal .table-data td { border-color: rgba(255,255,255,0.12); }
+
+/* Animations (reduced-motion safe via global rule above) */
+@keyframes draw { to { stroke-dashoffset: 0; } }
+@keyframes flow { to { stroke-dashoffset: -40; } }
+@keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+.anim-rise { animation: rise var(--duration-narrative) var(--ease-narrative) both; }
+.anim-flow { stroke-dasharray: 8 8; animation: flow 1.6s linear infinite; }
+.anim-draw { stroke-dasharray: 1000; stroke-dashoffset: 1000; animation: draw 1.8s var(--ease-narrative) forwards; }
+
+/* Scrollbar-less horizontal scroll areas */
+.scroll-x { overflow-x: auto; scrollbar-width: thin; }
+
+/* Skeleton */
+.skeleton { background: linear-gradient(90deg, var(--color-neutral-100), var(--color-neutral-200), var(--color-neutral-100)); background-size: 200% 100%; animation: shimmer 1.4s linear infinite; border-radius: 4px; }
+@keyframes shimmer { to { background-position: -200% 0; } }
+
+/* Touch targets */
+.tap { min-height: 44px; min-width: 44px; }
