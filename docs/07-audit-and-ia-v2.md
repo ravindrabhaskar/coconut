@@ -115,4 +115,13 @@ Phase 1 IA/nav/home/templates/GraphNav/tools hub · Phase 2 evidence states, sta
 - Phase 3: seven thin products enriched (qualitative depth; numbers stay RESEARCH REQUIRED), six new products (milk powder, grow bags, rope & mats, vinegar, nata de coco, handicrafts).
 - Phase 4: shared Scenario (localStorage, typed) with ScenarioBar; mass balance → planner → financial model read/write it.
 - Phase 9 prep: CI workflow (typecheck → lint → unit → build → e2e), Playwright config + smoke/responsive/redirect/evidence/scenario specs.
-Not done (next): git baseline, form-based CMS, auth + DB-persisted scenarios, TopoJSON map, photography, GLB, location engine, tsvector search, localisation.
+Not done after this iteration (see section Q for what was completed next): form-based CMS, auth + DB-persisted scenarios, photography, GLB.
+
+## Q. Implemented 2026-09-14 (second pass)
+- Real India map: DataMeet Admin2 (MIT) → `src/data/india-geo.ts` (35 states, equirectangular, simplified); `IndiaMap` renders all boundaries, shades analysed states by score; used on /, /india, /tools/location-finder. Schematic paths on `StateProfile` are now unused.
+- Explore hero: `AnatomyHero` overlays numbered hotspots on the exploded render with a "mature nut" framing per layer; SVG model moved to its own section.
+- Location engine: `src/lib/calc/location.ts` (need profile → dimension-weight overrides → `rankLocations`; `needsForProduct` infers a profile from typed product fields, no numbers invented) + `/tools/location-finder`. Tests in `location.test.ts`. State dimension label "Suppliers (machinery/services)" normalised to "Suppliers".
+- Search scaling: `search_index` table with stored generated `tsvector` (A name / B group+keywords / C summary) and GIN index; `src/db/search.ts`; service uses Postgres when `DATABASE_URL` is set and falls back to the in-memory index; `pnpm seed` rebuilds the index.
+- Localisation prep: `src/i18n` (locales, `t()` with English fallback, `numberFormat` fixed to en-IN lakh/crore grouping, `<html lang>` from `DEFAULT_LOCALE`); route/translation-table strategy documented in the module header. No page strings migrated yet.
+- Git baseline: repository initialised; large raw geo inputs ignored (regenerate per `research/geo/README.md`).
+Still not done: form-based CMS, auth + DB-persisted scenarios, photography supply (see images/SHOT-LIST.md), GLB model, district-level location data, locale routing.
