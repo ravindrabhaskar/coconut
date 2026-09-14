@@ -1,5 +1,7 @@
+# Build-script approvals (pnpm 10+). esbuild needs its postinstall to fetch the platform binary;
+# sharp and unrs-resolver work without their scripts (Next uses its bundled sharp on Vercel).
 allowBuilds:
-  esbuild: set this to true or false
+  esbuild: true
   sharp: false
   unrs-resolver: false
 onlyBuiltDependencies:
