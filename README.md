@@ -12,6 +12,22 @@ pnpm test           # 59 unit/integration tests; `pnpm e2e` runs Playwright smok
 pnpm build && pnpm start
 ```
 
+## Deploy (free — Vercel Hobby)
+
+The site runs entirely from the typed static content, so **no database and no paid service is needed**. Vercel's Hobby plan is free for personal projects and deploys this Next.js app as-is.
+
+1. Go to https://vercel.com/new and sign in with GitHub (free).
+2. Import `ravindrabhaskar/coconut`. Framework is auto-detected as Next.js; keep the defaults (build `next build`, package manager pnpm from the lockfile).
+3. Environment variables (Settings → Environment Variables):
+   - `NEXT_PUBLIC_SITE_URL` = your Vercel URL, e.g. `https://coconut.vercel.app` (used for canonical links and the sitemap).
+   - `ADMIN_PASSWORD` = any strong password (only needed to open `/admin`; leave unset to keep admin locked).
+   - Leave `DATABASE_URL` unset.
+4. Click **Deploy**. Every push to `main` redeploys automatically; pull requests get preview URLs.
+
+CLI alternative: `npx vercel` (login once with GitHub), then `npx vercel --prod`.
+
+Other free hosts that work unchanged: Netlify (Next runtime), Cloudflare Pages (`@opennextjs/cloudflare`), Render free web service (`pnpm build` / `pnpm start`).
+
 ## Database (optional, recommended for production)
 
 ```bash
