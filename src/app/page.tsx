@@ -1,12 +1,14 @@
 import Link from "next/link";
+import Image from "next/image";
+import { PalmFrond, Blob, CircleFrame } from "@/components/ui/decor";
 import { repo } from "@/services/repository";
 import { productGapReport, componentGapReport, aggregateCoverage } from "@/services/gaps";
 import { planFactory } from "@/lib/calc/factoryPlanner";
 import { scoreLocation } from "@/lib/calc/scoring";
 import { formatQuantity, EVIDENCE_LABEL } from "@/lib/format";
-import { Container, Section, SectionHeader, LinkButton, Arrow, Overline, Badge, cx } from "@/components/ui/primitives";
+import { Container, Section, SectionHeader, LinkButton, Arrow, Overline, Badge } from "@/components/ui/primitives";
 import { Journey, HubGrid } from "@/components/ui/hub";
-import { AnatomyImage } from "@/components/viz/coconut/anatomy-image";
+import { ExplodedCoconut } from "@/components/viz/coconut/exploded-coconut";
 import { IndiaMapPreview } from "@/components/viz/india-map-preview";
 import { EvidenceBadge } from "@/components/ui/evidence";
 import type { CoconutLayer } from "@/components/viz/coconut/types";
@@ -63,30 +65,58 @@ export default async function HomePage() {
 
   return (
     <>
-      {/* 1 — HERO */}
-      <section className="surface-hero -mt-16 overflow-hidden pt-28 pb-16 md:pt-36 md:pb-24">
-        <div aria-hidden="true" className="pattern-dots absolute inset-0 opacity-70 [mask-image:radial-gradient(60%_60%_at_75%_30%,#000,transparent)]" />
-        <div aria-hidden="true" className="anim-float absolute -right-24 top-24 hidden h-[420px] w-[420px] rounded-full border border-lime-400/15 lg:block" />
-        <div aria-hidden="true" className="absolute -right-6 top-44 hidden h-[260px] w-[260px] rounded-full border border-aqua-400/20 lg:block" />
+      {/* 1 — HERO (light tropical, reference-driven) */}
+      <section className="surface-tropical -mt-16 overflow-hidden pt-28 pb-10 md:pt-32 md:pb-16">
+        <PalmFrond className="-left-16 -top-10 h-[360px] w-[360px] opacity-[0.18] md:h-[460px] md:w-[460px]" />
+        <PalmFrond flip className="-right-20 -bottom-24 h-[380px] w-[380px] opacity-[0.16] md:h-[520px] md:w-[520px]" />
         <Container className="relative z-[1]">
-          <div className="grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
+          <div className="grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
             <div>
-              <Overline className="anim-rise mb-6 flex items-center gap-3 text-lime-400"><span className="h-px w-8 bg-accent" aria-hidden="true" />One coconut. An entire industry.</Overline>
-              <h1 className="t-h1 anim-rise max-w-[15ch] text-ivory-50">The operating system for the <span className="t-gradient">coconut processing</span> industry.</h1>
-              <p className="t-body-lg mt-6 max-w-[54ch] text-ivory-100/75">Explore products, processing technologies, machinery, factory economics, markets and verified industry data in one connected platform — where every important number shows its evidence.</p>
+              <Overline className="anim-rise mb-6 flex items-center gap-3 text-palm-500"><span className="h-px w-8 bg-accent" aria-hidden="true" />One coconut. An entire industry.</Overline>
+              <h1 className="t-h1 anim-rise max-w-[15ch] text-coconut-950">The operating system for the <span className="text-leaf-500">coconut processing</span> industry.</h1>
+              <p className="t-body-lg mt-6 max-w-[54ch] text-neutral-700">Explore products, processing technologies, machinery, factory economics, markets and verified industry data in one connected platform — where every important number shows its evidence.</p>
               <div className="mt-9 flex flex-wrap gap-3">
                 <LinkButton href="/explore" variant="light">Explore the coconut value chain <Arrow /></LinkButton>
-                <LinkButton href="/factory" variant="outline-light">Plan a factory</LinkButton>
+                <LinkButton href="/factory" variant="ghost">Plan a factory</LinkButton>
               </div>
+              <dl className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-4">
+                {[["Components", components.length], ["Products", products.length], ["Engineering models", scaleModels.length], ["Export markets", countries.filter((c) => c.productIds.length).length]].map(([k, v]) => (
+                  <div key={String(k)} className="card px-4 py-3"><dt className="t-overline text-neutral-500">{k}</dt><dd className="t-metric mt-1 text-2xl text-coconut-950">{v}</dd></div>
+                ))}
+              </dl>
             </div>
-            <dl className="grid grid-cols-2 gap-3 text-ivory-50 sm:grid-cols-4 lg:grid-cols-2">
-              {[["Components", components.length, ""], ["Products", products.length, ""], ["Engineering models", scaleModels.length, ""], ["Export markets", countries.filter((c) => c.productIds.length).length, ""], ["Customer segments", customers.length, ""], ["Sources on file", sources.length, ""], ["Fields with evidence", `${agg.coveragePct}%`, "accent"], ["Verified / sourced", `${agg.sourcedPct}%`, "accent"]].map(([k, v, tone]) => (
-                <div key={String(k)} className={cx("card-glass p-4", tone === "accent" && "border-lime-400/40")}><dt className="t-overline text-ivory-100/55">{k}</dt><dd className={cx("t-metric mt-2 text-3xl", tone === "accent" && "t-gradient")}>{v}</dd></div>
-              ))}
-            </dl>
+            <figure className="relative mx-auto w-full max-w-[520px]">
+              <Blob className="-inset-6 -z-[1] opacity-70" tone="leaf" />
+              <div className="card anim-float overflow-hidden p-3">
+                <Image src="/images/pages/coconut-exploded-view.png" alt="Exploded view of a coconut: stem, outer husk, fibrous husk, hard shell, meat and water" width={1191} height={1321} priority sizes="(min-width: 1024px) 520px, 100vw" className="h-auto w-full rounded-[12px]" />
+              </div>
+              <figcaption className="t-caption mt-3 text-center">Six layers — one nut. <Link href="/explore" className="underline underline-offset-4">Open the interactive anatomy →</Link></figcaption>
+            </figure>
           </div>
         </Container>
       </section>
+
+      {/* 1b — WHY (reference "Nothing but goodness" trio) */}
+      <Section surface="white" padded={false} className="py-14 md:py-20">
+        <Container>
+          <SectionHeader overline="Nothing but data" title="Built on evidence, connected end to end." align="center" className="mb-10" />
+          <ul className="grid gap-6 sm:grid-cols-3">
+            {[
+              ["Evidence-labelled", `${agg.totalFields} tracked fields. Verified, sourced, estimate or research required — never a number without its label.`, "/methodology", "M12 3l7 4v5c0 4.4-3 8.3-7 9-4-.7-7-4.6-7-9V7l7-4z"],
+              ["One knowledge graph", "Component → product → process → machine → factory → market. Every page links to its neighbours.", "/explore", "M5 12h14M12 5l7 7-7 7"],
+              ["Calculators that share a scenario", "Mass balance, factory planner and financial model read and write the same scenario.", "/tools", "M4 19h16M6 15l4-4 3 3 5-6"],
+            ].map(([t, b, h, d]) => (
+              <li key={h} className="card card-hover text-center">
+                <Link href={h} className="block p-7">
+                  <span className="mx-auto mb-5 inline-flex h-16 w-16 items-center justify-center rounded-full bg-leaf-200 text-coconut-800 ring-8 ring-lime-300/40"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d={d} stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></svg></span>
+                  <p className="t-h4">{t}</p>
+                  <p className="t-caption mt-2 mx-auto max-w-[34ch]">{b}</p>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </Container>
+      </Section>
 
       {/* 2 — INTERACTIVE VALUE CHAIN */}
       <Section surface="ivory" padded={false} className="py-14">
@@ -97,10 +127,40 @@ export default async function HomePage() {
       </Section>
 
       {/* 3 — ANATOMY */}
-      <Section surface="white">
+      <Section surface="dark">
         <Container>
-          <SectionHeader overline="Anatomy" title="Six layers. Six material streams." lede="Select a layer to see what it is, how it is separated, and which products grow from it. The full interactive exploded model lives on the Explore page." />
-          <AnatomyImage layers={layers} />
+          <div className="text-ivory-50"><ExplodedCoconut layers={layers} initialExploded={false} /></div>
+        </Container>
+      </Section>
+
+      {/* 3b — ZERO WASTE (reference flat-lay: every part, every use) */}
+      <Section surface="sand">
+        <PalmFrond className="-right-24 -top-16 h-[380px] w-[380px] opacity-[0.14]" flip />
+        <Container className="relative z-[1]">
+          <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+            <figure className="card overflow-hidden p-3">
+              <Image src="/images/pages/coconut-uses-flatlay.jpg" alt="Flat-lay of coconut parts in bowls — husk, shell, water, flesh, chips, flour, cream, milk and oil — each labelled with its uses" width={602} height={768} sizes="(min-width: 1024px) 520px, 100vw" className="h-auto w-full rounded-[12px]" />
+              <figcaption className="t-caption px-2 pt-3 pb-1">Zero waste: every part of the nut has a use. Reference image — licence unverified, to be replaced with licensed photography.</figcaption>
+            </figure>
+            <div>
+              <SectionHeader overline="Zero waste" title="Nothing is thrown away." lede="Husk, shell, water and kernel each carry their own product tree. Select a component to see the products the platform models for it." className="mb-8" />
+              <ul className="grid gap-3 sm:grid-cols-2">
+                {components.filter((c) => c.origin === "fruit").map((c) => {
+                  const prods = [...c.primaryOutputProductIds, ...c.secondaryOutputProductIds].map((id) => byId[id]).filter(Boolean);
+                  return (
+                    <li key={c.id} className="card card-hover">
+                      <Link href={`/explore/${c.slug}`} className="block p-4">
+                        <p className="t-h4">{c.name.replace(/ \(.*\)/, "")}</p>
+                        <p className="t-overline mt-2 text-neutral-500">Uses</p>
+                        <p className="t-caption mt-1">{prods.length ? prods.slice(0, 5).map((p) => p.name).join(" · ") : "research required"}</p>
+                      </Link>
+                    </li>
+                  );
+                })}
+              </ul>
+              <p className="mt-6"><LinkButton href="/zero-waste" variant="ghost">Zero-waste model <Arrow /></LinkButton></p>
+            </div>
+          </div>
         </Container>
       </Section>
 
@@ -161,7 +221,10 @@ export default async function HomePage() {
       {/* 6 — INDIA SUPPLY INTELLIGENCE */}
       <Section surface="charcoal">
         <Container>
-          <SectionHeader overline="Locations" title={<span className="text-ivory-50">India supply intelligence.</span>} lede={<span className="text-ivory-100/70">State production, processing hubs and ports, scored with transparent weights. State boundaries from DataMeet (MIT); district clusters are on the roadmap.</span>} />
+          <div className="grid gap-10 lg:grid-cols-[1fr_220px] lg:items-start">
+            <SectionHeader overline="Locations" title={<span className="text-ivory-50">From the palm to the plant.</span>} lede={<span className="text-ivory-100/70">State production, processing hubs and ports, scored with transparent weights. State boundaries from DataMeet (MIT); district clusters are on the roadmap.</span>} className="mb-4" />
+            <CircleFrame className="mx-auto w-[200px] lg:mt-2" blobClassName="opacity-80"><Image src="/images/pages/palm-climber.jpg" alt="A climber harvesting nuts from a coconut palm" width={528} height={490} sizes="200px" className="h-full w-full object-cover object-[50%_35%]" /></CircleFrame>
+          </div>
           <div className="text-ivory-50"><IndiaMapPreview states={mapStates} /></div>
           <p className="mt-8"><LinkButton href="/india" variant="outline-light">Full location analysis <Arrow /></LinkButton></p>
         </Container>

@@ -17,7 +17,7 @@ export default async function LocationsHub() {
   };
   return (
     <>
-      <PageIntro overline="Locations" title="Where should this factory be?" lede="Raw material, land, labour, power, water, road, rail, port, market, ecosystem, suppliers, schemes and export connectivity — scored per state with visible weights. Scenario weights (near farms, near market, near Hyderabad, near port, hybrid) change the ranking; no location is declared best." breadcrumbs={[{ label: "Locations" }]} />
+      <PageIntro dark={false} overline="Locations" title="Where should this factory be?" lede="Raw material, land, labour, power, water, road, rail, port, market, ecosystem, suppliers, schemes and export connectivity — scored per state with visible weights. Scenario weights (near farms, near market, near Hyderabad, near port, hybrid) change the ranking; no location is declared best." breadcrumbs={[{ label: "Locations" }]} />
       <Section surface="ivory"><Container>
         <SectionHeader overline="India" title="State profiles." lede="District-level production density, freight distances and factory registries are RESEARCH REQUIRED (roadmap: TopoJSON boundaries + CDB district data)." className="mb-8" />
         <HubGrid columns={4} items={scored.map(({ s, r }) => ({ title: s.name, href: `/india/${s.slug}`, body: s.summary, badge: [<Badge key="s" tone="green">{r.total}/100 default weights</Badge>, ...(schemes.some((x) => x.geography.includes(s.id)) ? [<Badge key="sch">state scheme record</Badge>] : [])], meta: suggested(s.id).length ? `Suggested fit: ${suggested(s.id).join(", ")}` : undefined }))} />

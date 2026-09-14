@@ -2,6 +2,7 @@ import Link from "next/link";
 import { repo } from "@/services/repository";
 import { Container, Section, SectionHeader } from "@/components/ui/primitives";
 import { Breadcrumbs } from "@/components/layout/chrome";
+import { PalmFrond } from "@/components/ui/decor";
 import { AnatomyHero } from "@/components/viz/coconut/anatomy-hero";
 import type { CoconutLayer } from "@/components/viz/coconut/types";
 import { formatQuantity } from "@/lib/format";
@@ -19,11 +20,13 @@ export default async function ExplorePage() {
   }));
   return (
     <>
-      <section className="surface-hero pt-8 pb-16">
+      <section className="surface-tropical overflow-hidden pt-8 pb-16">
+        <PalmFrond className="-left-16 -top-12 h-[420px] w-[420px] opacity-[0.16]" />
+        <PalmFrond flip className="-right-24 -bottom-24 h-[440px] w-[440px] opacity-[0.14]" />
         <Container className="relative z-[1]">
-          <Breadcrumbs items={[{ label: "Explore" }]} dark className="mb-8" />
-          <p className="t-overline text-leaf-300 mb-4">Explore</p>
-          <h1 className="t-h1 text-ivory-50 max-w-[16ch]">Understand the coconut before the industry.</h1>
+          <Breadcrumbs items={[{ label: "Explore" }]} className="mb-8" />
+          <p className="t-overline text-palm-500 mb-4 flex items-center gap-3"><span className="h-px w-6 bg-accent" aria-hidden="true" />Explore</p>
+          <h1 className="t-h1 text-coconut-950 max-w-[16ch]">Understand the coconut before the industry.</h1>
           <div className="mt-12"><AnatomyHero layers={layers} /></div>
         </Container>
       </section>

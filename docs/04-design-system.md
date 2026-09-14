@@ -78,3 +78,10 @@ Token *names* are unchanged; values and surfaces were reworked so every page inh
 - Components: `.card` / `.card-hover` (elevation + lift), `.card-glass` for dark surfaces, `.rule-accent`, `.bg-accent|copper|aqua`, `t-gradient` headline accent. Buttons are pills (`primary` dark, `light`/`secondary` lime gradient with glow, `outline-light` glass). Badges are pills; `aqua` and `lime` tones added. Breadcrumbs sit in a pill. Mega-menu floats as a rounded glass panel. HubGrid and Journey render as card grids instead of hairline list-grids.
 - Radii: control 10px, card 16px, media 18px. Metrics use Manrope 700 (display) instead of mono.
 - Evidence colours updated to match (`verified` leaf-500, `sourced` aqua-500) — labels remain mandatory; colour is never the only signal.
+
+## v3.1 — reference-driven tropical refresh (2026-09-14)
+References (images/01–08.png, owner-supplied): light coconut-cream grounds, palm-frond motifs at section corners, real coconut photography, circular photo crops with soft green blobs, flat-lay "every part has a use" layout, feature trios with round icons.
+- New tokens: `palm-500` #5B6B43, `palm-300` #A7B48A, `palm-200`, `sand-200/300`; creams re-tuned to the reference (`ivory-200` #EDE6DB). New surfaces `.surface-tropical` (cream + leaf/sand glows — homepage hero, Explore hero, light PageIntro) and `.surface-sand`.
+- `src/components/ui/decor.tsx`: `PalmFrond` (SVG frond, decorative, aria-hidden), `Blob`, `CircleFrame` (round crop + blob).
+- Homepage: light hero with the exploded-coconut render in a floating card; "Nothing but data" trio; dark interactive SVG anatomy; sand "Nothing is thrown away" flat-lay section driven by component→product data; palm-climber circle crop in the Locations section. Header is always light (hero surfaces are light).
+- Images added under `public/images/pages/`: `coconut-uses-flatlay.jpg`, `palm-climber.jpg` (crops of reference images; overlays removed). Sidecars mark **licence unverified — replace before public launch**. Reference screenshots that carry third-party branding (01–05, 08) were used for layout/palette only and are not embedded.
