@@ -2,7 +2,6 @@ import Link from "next/link";
 import { repo } from "@/services/repository";
 import { Container, Section, SectionHeader } from "@/components/ui/primitives";
 import { Breadcrumbs } from "@/components/layout/chrome";
-import { ExplodedCoconut } from "@/components/viz/coconut/exploded-coconut";
 import { AnatomyHero } from "@/components/viz/coconut/anatomy-hero";
 import type { CoconutLayer } from "@/components/viz/coconut/types";
 import { formatQuantity } from "@/lib/format";
@@ -26,13 +25,6 @@ export default async function ExplorePage() {
           <p className="t-overline text-leaf-300 mb-4">Explore</p>
           <h1 className="t-h1 text-ivory-50 max-w-[16ch]">Understand the coconut before the industry.</h1>
           <div className="mt-12"><AnatomyHero layers={layers} /></div>
-        </Container>
-      </section>
-      <section className="surface-dark border-t border-white/10 pb-16 pt-12">
-        <Container>
-          <p className="t-overline text-leaf-300 mb-2">Interactive model</p>
-          <p className="max-w-[60ch] text-ivory-100/70">Explode and collapse the mature-nut model; every layer carries its mass share with evidence labels.</p>
-          <div className="mt-8 text-ivory-50"><ExplodedCoconut layers={layers} initialExploded={false} /></div>
         </Container>
       </section>
       <Section surface="ivory">
