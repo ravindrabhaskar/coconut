@@ -2,7 +2,6 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 import { Container, cx } from "@/components/ui/primitives";
 import { Logo } from "./header";
-import { PalmFrond } from "@/components/ui/decor";
 import { repo } from "@/services/repository";
 import { NAV_STATIC, type NavGroup } from "./nav-data";
 import { Header } from "./header";
@@ -85,8 +84,8 @@ export function PrevNext({ prev, next, label }: { prev?: { name: string; href: s
 
 export function PageIntro({ overline, title, lede, breadcrumbs, children, dark = true }: { overline?: string; title: ReactNode; lede?: ReactNode; breadcrumbs?: { label: string; href?: string }[]; children?: ReactNode; dark?: boolean }) {
   return (
-    <div className={cx(dark ? "surface-hero" : "surface-tropical", "pt-8 pb-14 md:pt-10 md:pb-20 overflow-hidden")}>
-      {dark ? <div aria-hidden="true" className="pattern-dots absolute inset-0 opacity-60 [mask-image:radial-gradient(70%_60%_at_80%_20%,#000,transparent)]" /> : <PalmFrond flip className="-right-24 -top-16 h-[420px] w-[420px] opacity-[0.14]" />}
+    <div className={cx(dark ? "surface-hero" : "surface-ivory", "pt-8 pb-14 md:pt-10 md:pb-20 overflow-hidden")}>
+      {dark && <div aria-hidden="true" className="pattern-dots absolute inset-0 opacity-60 [mask-image:radial-gradient(70%_60%_at_80%_20%,#000,transparent)]" />}
       <Container className="relative z-[1]">
         {breadcrumbs && <Breadcrumbs items={breadcrumbs} dark={dark} className="mb-8" />}
         {overline && <p className={cx("t-overline mb-4 flex items-center gap-3", dark ? "text-lime-400" : "text-leaf-500")}><span className="h-px w-6 bg-accent" aria-hidden="true" />{overline}</p>}

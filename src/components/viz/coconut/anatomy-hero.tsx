@@ -36,7 +36,7 @@ export function AnatomyHero({ layers }: { layers: CoconutLayer[] }) {
   return (
     <div className="grid gap-10 lg:grid-cols-[1fr_1fr] lg:items-center">
       <figure className="mx-auto w-full max-w-[520px]">
-        <div className="card relative overflow-hidden">
+        <div className="relative overflow-hidden rounded-[var(--radius-media)] border border-white/15 bg-white">
           <Image src="/images/pages/coconut-exploded-view.png" alt="Exploded view of a young green coconut: stem (peduncle), outer husk (exocarp), fibrous husk (mesocarp), hard shell (endocarp), coconut meat (endosperm) and coconut water" width={1191} height={1321} priority sizes="(min-width: 1024px) 520px, 100vw" className="h-auto w-full" />
           {/* Stem: not a modelled material stream — informational marker only */}
           <span className="absolute -translate-x-1/2 -translate-y-1/2 rounded-full border border-neutral-400 bg-white/90 px-2 py-0.5 text-[0.65rem] font-semibold text-neutral-600" style={{ left: `${STEM.x}%`, top: `${STEM.y}%` }} title="Peduncle — field residue, not an industrial stream">stem · field residue</span>
@@ -51,13 +51,13 @@ export function AnatomyHero({ layers }: { layers: CoconutLayer[] }) {
             );
           })}
         </div>
-        <figcaption className="t-caption mt-2">Young (tender) coconut, exploded. Tap a number to see how that layer behaves on the mature nut the industry actually processes.</figcaption>
+        <figcaption className="t-caption mt-2 text-ivory-100/60">Young (tender) coconut, exploded. Tap a number to see how that layer behaves on the mature nut the industry actually processes.</figcaption>
       </figure>
       <div>
         <ol className="flex flex-wrap gap-2" role="tablist" aria-label="Coconut layers">
           {ordered.map((l) => (
             <li key={l.id}>
-              <button role="tab" aria-selected={activeOrder === l.order} onClick={() => setActiveOrder(l.order)} className={cx("tap rounded-full border px-3.5 py-2 text-[0.82rem] font-semibold", activeOrder === l.order ? "bg-coconut-950 text-ivory-50 border-coconut-950" : "border-neutral-300 bg-cocos hover:border-leaf-500")}>
+              <button role="tab" aria-selected={activeOrder === l.order} onClick={() => setActiveOrder(l.order)} className={cx("tap rounded-full border px-3.5 py-2 text-[0.82rem] font-semibold", activeOrder === l.order ? "bg-accent text-coconut-950 border-transparent" : "border-white/25 text-ivory-50 hover:border-lime-400")}>
                 {String(l.order).padStart(2, "0")} {l.name}
               </button>
             </li>
@@ -65,17 +65,17 @@ export function AnatomyHero({ layers }: { layers: CoconutLayer[] }) {
         </ol>
         {active && (
           <div key={active.id} className="anim-rise mt-6" aria-live="polite">
-            <p className="t-overline text-leaf-500">Layer {String(active.order).padStart(2, "0")} · {active.massShareLabel ?? "mass share: research required"}</p>
-            <h2 className="t-h2 mt-2 text-coconut-950">{active.name}</h2>
-            <p className="mt-3 max-w-[52ch] text-[1.02rem] leading-relaxed text-neutral-700">{active.short}</p>
-            <p className="mt-3 max-w-[52ch] rounded-[var(--radius-card)] border border-leaf-300 bg-leaf-200/40 px-4 py-3 text-[0.9rem] text-neutral-800"><span className="t-overline text-leaf-500 mr-2">Mature nut</span>{MATURE_NOTE[active.order]}</p>
+            <p className="t-overline text-leaf-300">Layer {String(active.order).padStart(2, "0")} · {active.massShareLabel ?? "mass share: research required"}</p>
+            <h2 className="t-h2 mt-2 text-ivory-50">{active.name}</h2>
+            <p className="mt-3 max-w-[52ch] text-[1.02rem] leading-relaxed text-ivory-100/80">{active.short}</p>
+            <p className="mt-3 max-w-[52ch] rounded-[var(--radius-control)] border border-white/15 bg-white/5 px-4 py-3 text-[0.9rem] text-ivory-100/80"><span className="t-overline text-leaf-300 mr-2">Mature nut</span>{MATURE_NOTE[active.order]}</p>
             {active.products.length > 0 && (
               <div className="mt-5">
-                <p className="t-overline text-neutral-500 mb-2">Becomes</p>
-                <ul className="flex flex-wrap gap-2">{active.products.map((p) => <li key={p.href}><Link href={p.href} className="t-nav rounded-full border border-neutral-300 bg-cocos px-3 py-1.5 hover:border-leaf-500 tap">{p.name}</Link></li>)}</ul>
+                <p className="t-overline text-ivory-100/50 mb-2">Becomes</p>
+                <ul className="flex flex-wrap gap-2">{active.products.map((p) => <li key={p.href}><Link href={p.href} className="t-nav rounded-full border border-white/25 px-3 py-1.5 text-ivory-50 hover:border-leaf-300 tap">{p.name}</Link></li>)}</ul>
               </div>
             )}
-            <Link href={`/explore/${active.slug}`} className="t-cta mt-6 inline-flex items-center gap-2 rounded-full bg-coconut-950 px-5 py-3 text-ivory-50 shadow-[0_8px_24px_-10px_rgba(6,21,15,0.6)] tap">Explore {active.name} →</Link>
+            <Link href={`/explore/${active.slug}`} className="t-cta mt-6 inline-flex items-center gap-2 rounded-full bg-accent px-5 py-3 text-coconut-950 shadow-[var(--shadow-glow)] tap">Explore {active.name} →</Link>
           </div>
         )}
       </div>

@@ -27,8 +27,7 @@ function HeaderInner({ nav, pathname }: { nav: NavGroup[]; pathname: string }) {
 
   const enter = (i: number) => { if (closeTimer.current) clearTimeout(closeTimer.current); setOpen(i); };
   const leave = () => { closeTimer.current = setTimeout(() => setOpen(null), 160); };
-  const dark = false; // hero surfaces are light in design v3.1 (pathname/scrolled kept for a future dark hero)
-  void pathname; void scrolled;
+  const dark = pathname === "/" && !scrolled;
   const active = open === null ? null : open === -1 ? { label: "More", href: "#", columns: nav.filter((g) => g.secondary).map((g) => ({ heading: g.label, items: g.columns.flatMap((c) => c.items).slice(0, 6) })), featured: undefined } : nav[open];
 
   return (

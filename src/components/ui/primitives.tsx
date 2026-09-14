@@ -10,7 +10,7 @@ export function Container({ children, className, wide }: { children: ReactNode; 
   return <div className={cx("mx-auto w-full px-5 sm:px-8 lg:px-12", wide ? "max-w-[1600px]" : "max-w-[1440px]", className)}>{children}</div>;
 }
 
-export function Section({ children, className, surface = "ivory", id, padded = true }: { children: ReactNode; className?: string; surface?: "ivory" | "white" | "dark" | "charcoal" | "fibre" | "hero" | "tropical" | "sand" | "none"; id?: string; padded?: boolean }) {
+export function Section({ children, className, surface = "ivory", id, padded = true }: { children: ReactNode; className?: string; surface?: "ivory" | "white" | "dark" | "charcoal" | "fibre" | "hero" | "none"; id?: string; padded?: boolean }) {
   const s = surface === "none" ? "" : `surface-${surface}`;
   return (
     <section id={id} className={cx(s, padded && "py-[var(--spacing-section)]", "relative", className)}>

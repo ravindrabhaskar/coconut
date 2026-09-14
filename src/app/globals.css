@@ -19,17 +19,11 @@
   --color-lime-500: #a4e64a;
   --color-lime-400: #c5f07a;
   --color-lime-300: #e2f9b3;
-  /* Colour — creams (reference: coconut cream #EDE6DB, natural white #FAF8F4) */
-  --color-ivory-50: #faf8f3;
-  --color-ivory-100: #f3eee3;
-  --color-ivory-200: #ede6db;
+  /* Colour — creams */
+  --color-ivory-50: #faf7f0;
+  --color-ivory-100: #f3eee2;
+  --color-ivory-200: #e9e1cf;
   --color-cocos: #fffdf9;
-  /* Colour — palm (reference: tropical green #5B6B43, palm leaf #A7B48A) */
-  --color-palm-500: #5b6b43;
-  --color-palm-300: #a7b48a;
-  --color-palm-200: #d3dbc2;
-  --color-sand-200: #f1e4cf;
-  --color-sand-300: #e6d2b3;
   /* Colour — husk / earth */
   --color-fibre-200: #f0e2cc;
   --color-fibre-300: #dcc39c;
@@ -121,10 +115,8 @@
   --g-dark-glow: radial-gradient(60% 55% at 85% 0%, rgba(164, 230, 74, 0.16), transparent 60%), radial-gradient(45% 45% at 5% 100%, rgba(31, 158, 154, 0.18), transparent 60%);
   --g-charcoal: linear-gradient(160deg, #1c211e 0%, #121614 60%, #0f1412 100%);
   --g-charcoal-glow: radial-gradient(55% 50% at 90% 10%, rgba(201, 111, 59, 0.16), transparent 60%), radial-gradient(40% 40% at 10% 95%, rgba(79, 176, 122, 0.14), transparent 60%);
-  --g-ivory: linear-gradient(180deg, #faf8f3 0%, #f4eee3 100%);
-  --g-ivory-glow: radial-gradient(50% 40% at 100% 0%, rgba(167, 180, 138, 0.22), transparent 60%), radial-gradient(40% 40% at 0% 100%, rgba(164, 230, 74, 0.12), transparent 60%);
-  --g-tropical: radial-gradient(55% 60% at 85% 10%, rgba(197, 240, 122, 0.35), transparent 60%), radial-gradient(45% 50% at 5% 95%, rgba(167, 180, 138, 0.35), transparent 60%), radial-gradient(35% 40% at 60% 110%, rgba(230, 210, 179, 0.5), transparent 60%), linear-gradient(180deg, #fbf9f4 0%, #f3eee3 100%);
-  --g-sand: linear-gradient(180deg, #f6efe2 0%, #e9d8bd 100%);
+  --g-ivory: linear-gradient(180deg, #faf7f0 0%, #f6f1e6 100%);
+  --g-ivory-glow: radial-gradient(50% 40% at 100% 0%, rgba(164, 230, 74, 0.14), transparent 60%), radial-gradient(40% 40% at 0% 100%, rgba(72, 196, 190, 0.12), transparent 60%);
   --g-fibre: linear-gradient(160deg, #f6efe2 0%, #eddcc0 100%);
   --g-accent: linear-gradient(135deg, #a4e64a 0%, #2f8f5b 100%);
   --g-copper: linear-gradient(135deg, #e08a55 0%, #b8864a 100%);
@@ -192,9 +184,6 @@ body {
 .surface-ivory { background: var(--g-ivory-glow), var(--g-ivory); color: var(--color-neutral-900); }
 .surface-white { background: var(--color-cocos); color: var(--color-neutral-900); }
 .surface-fibre { background: var(--g-fibre); color: var(--color-neutral-900); }
-/* Light tropical hero (reference-driven): cream ground, leaf-green and sand glows */
-.surface-tropical { background: var(--g-tropical); color: var(--color-neutral-900); position: relative; isolation: isolate; }
-.surface-sand { background: var(--g-sand); color: var(--color-neutral-900); position: relative; isolation: isolate; }
 /* Hero mesh: dark ground with three soft colour fields */
 .surface-hero { background: radial-gradient(50% 60% at 78% 12%, rgba(164, 230, 74, 0.22), transparent 62%), radial-gradient(40% 50% at 10% 90%, rgba(31, 158, 154, 0.22), transparent 60%), radial-gradient(35% 40% at 60% 100%, rgba(201, 111, 59, 0.14), transparent 60%), var(--g-dark); color: var(--color-ivory-100); position: relative; isolation: isolate; }
 .surface-hero::after { content: ""; position: absolute; inset: 0; background-image: var(--grain); opacity: 0.06; pointer-events: none; mix-blend-mode: overlay; z-index: 0; }
