@@ -17,7 +17,7 @@ export function AnatomyImage({ layers }: { layers: CoconutLayer[] }) {
   return (
     <div className="grid gap-10 lg:grid-cols-[1fr_1fr] lg:items-center">
       <figure className="mx-auto w-full max-w-[560px]">
-        <div className="overflow-hidden rounded-[var(--radius-media)] border hairline bg-white">
+        <div className="card overflow-hidden">
           <Image src="/images/pages/coconut-exploded-view.png" alt="Exploded view of a young green coconut: stem (peduncle), outer husk (exocarp), fibrous husk (mesocarp), hard shell (endocarp), coconut meat (endosperm) and coconut water" width={1191} height={1321} priority={false} sizes="(min-width: 1024px) 560px, 100vw" className="h-auto w-full" />
         </div>
         <figcaption className="t-caption mt-2">Exploded view of a young (tender) coconut — the mature nut has thicker, firmer kernel and a brown, lignified husk. Layer shares below are for the mature nut.</figcaption>
@@ -26,7 +26,7 @@ export function AnatomyImage({ layers }: { layers: CoconutLayer[] }) {
         <ol className="flex flex-wrap gap-2" role="tablist" aria-label="Coconut layers">
           {ordered.map((l) => (
             <li key={l.id}>
-              <button role="tab" aria-selected={activeId === l.id} onClick={() => setActiveId(l.id)} className={cx("tap rounded-full border px-3.5 py-2 text-[0.82rem] font-semibold", activeId === l.id ? "bg-coconut-950 text-ivory-50 border-coconut-950" : "border-neutral-300 hover:border-coconut-800")}>
+              <button role="tab" aria-selected={activeId === l.id} onClick={() => setActiveId(l.id)} className={cx("tap rounded-full border px-3.5 py-2 text-[0.82rem] font-semibold", activeId === l.id ? "bg-coconut-950 text-ivory-50 border-coconut-950" : "border-neutral-300 bg-cocos hover:border-leaf-500")}>
                 {String(l.order).padStart(2, "0")} {l.name}
               </button>
             </li>
@@ -43,7 +43,7 @@ export function AnatomyImage({ layers }: { layers: CoconutLayer[] }) {
                 <ul className="flex flex-wrap gap-2">{active.products.map((p) => <li key={p.href}><Link href={p.href} className="t-nav rounded-full border border-neutral-300 px-3 py-1.5 hover:border-coconut-800 tap">{p.name}</Link></li>)}</ul>
               </div>
             )}
-            <Link href={`/explore/${active.slug}`} className="t-cta mt-6 inline-flex items-center gap-2 rounded-[var(--radius-control)] bg-coconut-950 px-5 py-3 text-ivory-50 tap">Explore {active.name} →</Link>
+            <Link href={`/explore/${active.slug}`} className="t-cta mt-6 inline-flex items-center gap-2 rounded-full bg-coconut-950 px-5 py-3 text-ivory-50 shadow-[0_8px_24px_-10px_rgba(6,21,15,0.6)] tap">Explore {active.name} →</Link>
           </div>
         )}
       </div>

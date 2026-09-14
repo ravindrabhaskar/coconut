@@ -53,8 +53,8 @@ export default async function OpportunityPage({ params }: { params: Promise<{ sl
           </div>
 
           <h2 className="t-h3 mt-16 mb-6">Business Model Canvas — generated from the opportunity record</h2>
-          <div className="grid gap-px overflow-hidden rounded-[var(--radius-media)] border hairline bg-neutral-200 sm:grid-cols-2 lg:grid-cols-5">
-            {cells.map(([t, items]) => <div key={t} className="bg-cocos p-4"><p className="t-overline text-neutral-500 mb-2">{t}</p><ul className="space-y-1 text-[0.85rem]">{items.map((i) => <li key={i}>{i}</li>)}</ul></div>)}
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+            {cells.map(([t, items]) => <div key={t} className="card p-4"><p className="t-overline text-neutral-500 mb-2">{t}</p><ul className="space-y-1 text-[0.85rem]">{items.map((i) => <li key={i}>{i}</li>)}</ul></div>)}
           </div>
           <div className="mt-10"><Callout tone="warning" title="Strategic screening tool — not investment advice">Scores and levels are judgments recorded for transparency and challenge. Validate every assumption in the field before committing capital (see the 90-day plan).</Callout></div>
           <div className="mt-10"><p className="t-overline text-neutral-500 mb-3">Sources</p><SourceList ids={o.sourceIds} sources={sources} /></div>

@@ -19,7 +19,7 @@ export default async function ExplorePage() {
   }));
   return (
     <>
-      <section className="surface-dark pt-8 pb-16">
+      <section className="surface-hero pt-8 pb-16">
         <Container className="relative z-[1]">
           <Breadcrumbs items={[{ label: "Explore" }]} dark className="mb-8" />
           <p className="t-overline text-leaf-300 mb-4">Explore</p>
@@ -33,9 +33,9 @@ export default async function ExplorePage() {
           {(["fruit", "palm"] as const).map((origin) => (
             <div key={origin} className="mb-14">
               <p className="t-overline text-neutral-500 mb-5">{origin === "fruit" ? "Fruit components" : "Palm resources"}</p>
-              <ul className="grid gap-px overflow-hidden rounded-[var(--radius-media)] border hairline bg-neutral-200 sm:grid-cols-2 lg:grid-cols-3">
+              <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                 {components.filter((c) => c.origin === origin).map((c) => (
-                  <li key={c.id} className="bg-cocos p-6 hover:bg-ivory-100">
+                  <li key={c.id} className="card card-hover p-6">
                     <Link href={`/explore/${c.slug}`} className="group block">
                       <p className="t-h4 group-hover:underline underline-offset-4">{c.name}</p>
                       <p className="t-caption mt-1 italic">{c.scientificName}</p>

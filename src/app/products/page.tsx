@@ -35,11 +35,11 @@ export default async function ProductsPage({ searchParams }: { searchParams: Pro
       <Section surface="white" padded={false} className="pb-24 pt-6">
         <Container>
           {filtered.length === 0 ? <p className="t-caption py-10">No products match these filters.</p> : (
-            <ul className="grid gap-px overflow-hidden rounded-[var(--radius-media)] border hairline bg-neutral-200 sm:grid-cols-2 lg:grid-cols-3">
+            <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {filtered.map((p) => {
                 const g = productGapReport(p);
                 return (
-                  <li key={p.id} className="bg-cocos p-6 hover:bg-ivory-100">
+                  <li key={p.id} className="card card-hover p-6">
                     <Link href={`/products/${p.slug}`} className="group block h-full">
                       <div className="flex flex-wrap gap-1.5">{p.marketTags.map((t) => <Badge key={t}>{t}</Badge>)}<Badge tone="fibre">L{p.businessLevel.slice(1)}</Badge></div>
                       <p className="t-h4 mt-4 group-hover:underline underline-offset-4">{p.name}</p>

@@ -10,7 +10,7 @@ export function Container({ children, className, wide }: { children: ReactNode; 
   return <div className={cx("mx-auto w-full px-5 sm:px-8 lg:px-12", wide ? "max-w-[1600px]" : "max-w-[1440px]", className)}>{children}</div>;
 }
 
-export function Section({ children, className, surface = "ivory", id, padded = true }: { children: ReactNode; className?: string; surface?: "ivory" | "white" | "dark" | "charcoal" | "fibre" | "none"; id?: string; padded?: boolean }) {
+export function Section({ children, className, surface = "ivory", id, padded = true }: { children: ReactNode; className?: string; surface?: "ivory" | "white" | "dark" | "charcoal" | "fibre" | "hero" | "none"; id?: string; padded?: boolean }) {
   const s = surface === "none" ? "" : `surface-${surface}`;
   return (
     <section id={id} className={cx(s, padded && "py-[var(--spacing-section)]", "relative", className)}>
@@ -26,7 +26,7 @@ export function Overline({ children, className }: { children: ReactNode; classNa
 export function SectionHeader({ overline, title, lede, align = "left", className, as: Tag = "h2" }: { overline?: string; title: ReactNode; lede?: ReactNode; align?: "left" | "center"; className?: string; as?: "h1" | "h2" | "h3" }) {
   return (
     <div className={cx("mb-10 md:mb-14", align === "center" && "text-center mx-auto", className)}>
-      {overline && <Overline className="mb-4">{overline}</Overline>}
+      {overline && <Overline className={cx("mb-4 flex items-center gap-3", align === "center" && "justify-center")}><span className="h-px w-6 bg-accent" aria-hidden="true" />{overline}</Overline>}
       <Tag className={cx(Tag === "h1" ? "t-h1" : Tag === "h3" ? "t-h3" : "t-h2", "max-w-[22ch]", align === "center" && "mx-auto")}>{title}</Tag>
       {lede && <p className={cx("t-body-lg mt-5 max-w-[60ch] opacity-80", align === "center" && "mx-auto")}>{lede}</p>}
     </div>
@@ -35,13 +35,13 @@ export function SectionHeader({ overline, title, lede, align = "left", className
 
 /* ---------------------------------------------------------------- Buttons */
 type BtnVariant = "primary" | "secondary" | "ghost" | "light" | "outline-light";
-const btnBase = "inline-flex items-center justify-center gap-2 t-cta rounded-[var(--radius-control)] px-6 py-3.5 transition-colors duration-[var(--duration-ui)] tap disabled:opacity-50 disabled:cursor-not-allowed";
+const btnBase = "inline-flex items-center justify-center gap-2 t-cta rounded-full px-6 py-3.5 transition-all duration-[var(--duration-ui)] tap disabled:opacity-50 disabled:cursor-not-allowed hover:-translate-y-px active:translate-y-0";
 const btnVariants: Record<BtnVariant, string> = {
-  primary: "bg-coconut-950 text-ivory-50 hover:bg-coconut-800",
-  secondary: "bg-leaf-500 text-cocos hover:bg-coconut-700",
-  ghost: "text-coconut-950 hover:bg-neutral-100 border border-neutral-300",
-  light: "bg-ivory-50 text-coconut-950 hover:bg-leaf-200",
-  "outline-light": "border border-ivory-100/40 text-ivory-50 hover:bg-ivory-50/10",
+  primary: "bg-coconut-950 text-ivory-50 shadow-[0_8px_24px_-10px_rgba(6,21,15,0.6)] hover:bg-coconut-800",
+  secondary: "bg-accent text-coconut-950 shadow-[var(--shadow-glow)] hover:brightness-105",
+  ghost: "text-coconut-950 border border-neutral-300 bg-cocos hover:border-leaf-500 hover:bg-leaf-200/40",
+  light: "bg-accent text-coconut-950 shadow-[var(--shadow-glow)] hover:brightness-105",
+  "outline-light": "border border-ivory-100/30 text-ivory-50 backdrop-blur-sm hover:border-lime-400/70 hover:bg-ivory-50/10",
 };
 
 export function Button({ children, variant = "primary", className, ...rest }: { children: ReactNode; variant?: BtnVariant; className?: string } & React.ButtonHTMLAttributes<HTMLButtonElement>) {
@@ -61,20 +61,22 @@ export function Arrow({ className }: { className?: string }) {
 }
 
 /* ---------------------------------------------------------------- Badges / chips */
-export function Badge({ children, tone = "neutral", className }: { children: ReactNode; tone?: "neutral" | "green" | "fibre" | "dark" | "amber" | "danger"; className?: string }) {
+export function Badge({ children, tone = "neutral", className }: { children: ReactNode; tone?: "neutral" | "green" | "fibre" | "dark" | "amber" | "danger" | "aqua" | "lime"; className?: string }) {
   const tones = {
     neutral: "bg-neutral-100 text-neutral-700 border-neutral-200",
     green: "bg-leaf-200/60 text-coconut-800 border-leaf-300",
     fibre: "bg-fibre-200 text-earth-800 border-fibre-300",
     dark: "bg-charcoal-800 text-ivory-100 border-charcoal-700",
-    amber: "bg-amber-500/15 text-amber-500 border-amber-500/40",
+    amber: "bg-amber-500/12 text-amber-500 border-amber-500/40",
     danger: "bg-danger/10 text-danger border-danger/40",
+    aqua: "bg-aqua-200 text-aqua-500 border-aqua-400/50",
+    lime: "bg-lime-300 text-coconut-900 border-lime-500/60",
   };
-  return <span className={cx("t-badge inline-flex items-center rounded-[var(--radius-data)] border px-2 py-1", tones[tone], className)}>{children}</span>;
+  return <span className={cx("t-badge inline-flex items-center rounded-full border px-2.5 py-1", tones[tone], className)}>{children}</span>;
 }
 
 export function Chip({ children, active, onClick, className, href }: { children: ReactNode; active?: boolean; onClick?: () => void; className?: string; href?: string }) {
-  const cls = cx("t-nav inline-flex items-center rounded-full border px-3.5 py-1.5 transition-colors tap min-h-[36px]", active ? "bg-coconut-950 text-ivory-50 border-coconut-950" : "border-neutral-300 hover:border-coconut-800 text-neutral-800", className);
+  const cls = cx("t-nav inline-flex items-center rounded-full border px-3.5 py-1.5 transition-colors tap min-h-[36px]", active ? "bg-coconut-950 text-ivory-50 border-coconut-950 shadow-[0_6px_16px_-8px_rgba(6,21,15,0.6)]" : "border-neutral-300 bg-cocos hover:border-leaf-500 hover:bg-leaf-200/40 text-neutral-800", className);
   if (href) return <Link href={href} className={cls}>{children}</Link>;
   return <button type="button" onClick={onClick} className={cls} aria-pressed={active}>{children}</button>;
 }
@@ -98,7 +100,7 @@ export function BulletList({ items, className, columns }: { items: string[]; cla
     <ul className={cx("grid gap-x-8 gap-y-2", columns === 2 && "sm:grid-cols-2", className)}>
       {items.map((it, i) => (
         <li key={i} className="flex gap-3 text-[0.95rem] leading-relaxed">
-          <span className="mt-[0.7em] h-1.5 w-1.5 shrink-0 rounded-full bg-leaf-500" aria-hidden="true" />
+          <span className="mt-[0.7em] h-1.5 w-1.5 shrink-0 rounded-full bg-accent" aria-hidden="true" />
           <span>{it}</span>
         </li>
       ))}
@@ -117,7 +119,7 @@ export function ResearchRequiredInline({ note, className }: { note?: string; cla
 
 export function EmptyState({ title, body, action }: { title: string; body?: string; action?: ReactNode }) {
   return (
-    <div className="rounded-[var(--radius-media)] border border-dashed border-neutral-300 p-10 text-center">
+    <div className="rounded-[var(--radius-media)] border border-dashed border-neutral-300 bg-cocos/60 p-10 text-center">
       <p className="t-h4">{title}</p>
       {body && <p className="t-caption mt-2 max-w-[48ch] mx-auto">{body}</p>}
       {action && <div className="mt-5">{action}</div>}
@@ -126,9 +128,9 @@ export function EmptyState({ title, body, action }: { title: string; body?: stri
 }
 
 export function Callout({ title, children, tone = "neutral" }: { title?: string; children: ReactNode; tone?: "neutral" | "warning" | "green" }) {
-  const t = { neutral: "border-neutral-300 bg-neutral-50", warning: "border-amber-500/50 bg-amber-500/8", green: "border-leaf-300 bg-leaf-200/30" }[tone];
+  const t = { neutral: "border-neutral-300 bg-neutral-50", warning: "border-amber-500/60 bg-amber-500/8", green: "border-leaf-500 bg-leaf-200/35" }[tone];
   return (
-    <aside className={cx("rounded-[var(--radius-control)] border-l-4 px-5 py-4", t)}>
+    <aside className={cx("rounded-[var(--radius-card)] border border-l-4 px-5 py-4 shadow-[var(--shadow-card)]", t)}>
       {title && <p className="t-overline mb-2 text-neutral-700">{title}</p>}
       <div className="text-[0.95rem] leading-relaxed">{children}</div>
     </aside>

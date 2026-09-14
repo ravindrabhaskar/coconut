@@ -70,3 +70,11 @@ Button, LinkButton, Badge, EvidenceBadge (+popover), ResearchRequired, Quantity,
 DataTable, Tabs, Accordion, Tooltip, Skeleton, EmptyState, ErrorState, Callout, DisciplineRule, DepthToggle,
 Breadcrumbs, TOC, Chip/Filter, RangeInput, NumberInput, Select, Stepper (mobile wizard), ScoreBar, Heatmap cell,
 Freshness chip, SourceCitation.
+
+## v3 refresh (2026-09-14)
+Token *names* are unchanged; values and surfaces were reworked so every page inherits:
+- Palette: deep rainforest greens (`coconut-950` #06150F → `coconut-700` #1A4A33), new-leaf accent `lime-500` #A4E64A / `lime-400` #C5F07A (gradient `--g-accent` lime→`leaf-500` #2F8F5B), coconut-water `aqua-500` #1F9E9A, husk `copper-500` #C96F3B, warmer creams (`ivory-50` #FAF7F0, `cocos` #FFFDF9).
+- Surfaces are gradients with soft radial glows: `.surface-dark`, `.surface-charcoal`, `.surface-ivory`, `.surface-fibre`, and a new `.surface-hero` mesh (homepage hero, page intros, final CTA). `.pattern-dots` for dark heroes.
+- Components: `.card` / `.card-hover` (elevation + lift), `.card-glass` for dark surfaces, `.rule-accent`, `.bg-accent|copper|aqua`, `t-gradient` headline accent. Buttons are pills (`primary` dark, `light`/`secondary` lime gradient with glow, `outline-light` glass). Badges are pills; `aqua` and `lime` tones added. Breadcrumbs sit in a pill. Mega-menu floats as a rounded glass panel. HubGrid and Journey render as card grids instead of hairline list-grids.
+- Radii: control 10px, card 16px, media 18px. Metrics use Manrope 700 (display) instead of mono.
+- Evidence colours updated to match (`verified` leaf-500, `sourced` aqua-500) — labels remain mandatory; colour is never the only signal.

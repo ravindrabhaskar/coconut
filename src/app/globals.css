@@ -2,53 +2,68 @@
 
 /* ------------------------------------------------------------------------
    DESIGN TOKENS — single source of truth (see docs/04-design-system.md)
+   v3 palette: deep rainforest ground, lime "new leaf" accent, coconut-cream
+   surfaces, husk copper and coconut-water aqua as secondary hues.
+   Token names are stable; only values changed so every page inherits.
    ------------------------------------------------------------------------ */
 @theme {
-  /* Colour */
-  --color-coconut-950: #0b1a12;
-  --color-coconut-900: #12291c;
-  --color-coconut-800: #1c3a28;
-  --color-coconut-700: #26512f;
-  --color-leaf-500: #4f7f3a;
-  --color-leaf-400: #7ea55f;
-  --color-leaf-300: #a9c58e;
-  --color-leaf-200: #cfe0bd;
-  --color-ivory-50: #fbf8f1;
-  --color-ivory-100: #f4efe3;
-  --color-ivory-200: #ebe3d1;
-  --color-cocos: #fffdf8;
-  --color-fibre-200: #e5d6bd;
-  --color-fibre-300: #d2bc98;
-  --color-fibre-500: #b08d5b;
-  --color-earth-700: #6b4a2e;
-  --color-earth-800: #4a3220;
-  --color-charcoal-900: #17181a;
-  --color-charcoal-800: #24262a;
-  --color-charcoal-700: #3a3d42;
-  --color-charcoal-600: #55595f;
-  --color-ink: #0a0a0a;
+  /* Colour — greens */
+  --color-coconut-950: #06150f;
+  --color-coconut-900: #0b2219;
+  --color-coconut-800: #123425;
+  --color-coconut-700: #1a4a33;
+  --color-leaf-500: #2f8f5b;
+  --color-leaf-400: #4fb07a;
+  --color-leaf-300: #8fd8a8;
+  --color-leaf-200: #cdf0d8;
+  --color-lime-500: #a4e64a;
+  --color-lime-400: #c5f07a;
+  --color-lime-300: #e2f9b3;
+  /* Colour — creams */
+  --color-ivory-50: #faf7f0;
+  --color-ivory-100: #f3eee2;
+  --color-ivory-200: #e9e1cf;
+  --color-cocos: #fffdf9;
+  /* Colour — husk / earth */
+  --color-fibre-200: #f0e2cc;
+  --color-fibre-300: #dcc39c;
+  --color-fibre-500: #b8864a;
+  --color-copper-500: #c96f3b;
+  --color-copper-400: #e08a55;
+  --color-earth-700: #6d4527;
+  --color-earth-800: #472b18;
+  /* Colour — water */
+  --color-aqua-500: #1f9e9a;
+  --color-aqua-400: #48c4be;
+  --color-aqua-200: #c9efec;
+  /* Colour — charcoal / neutrals */
+  --color-charcoal-900: #121614;
+  --color-charcoal-800: #1c211e;
+  --color-charcoal-700: #2c332f;
+  --color-charcoal-600: #4a524d;
+  --color-ink: #070908;
   --color-neutral-50: #faf9f6;
-  --color-neutral-100: #f1efea;
-  --color-neutral-200: #e2dfd7;
-  --color-neutral-300: #c9c5bb;
-  --color-neutral-400: #a29e94;
-  --color-neutral-500: #77736a;
-  --color-neutral-600: #5a5750;
-  --color-neutral-700: #403e39;
-  --color-neutral-800: #2a2926;
-  --color-neutral-900: #1b1a18;
-  --color-amber-500: #c48a1f;
-  --color-slate-500: #4f6b8a;
-  --color-danger: #a83a2e;
+  --color-neutral-100: #f2f0ea;
+  --color-neutral-200: #e3e0d6;
+  --color-neutral-300: #cbc7bb;
+  --color-neutral-400: #a3a094;
+  --color-neutral-500: #75736a;
+  --color-neutral-600: #585650;
+  --color-neutral-700: #3e3d38;
+  --color-neutral-800: #282925;
+  --color-neutral-900: #171917;
+  --color-amber-500: #d29a1c;
+  --color-slate-500: #4d6f93;
+  --color-danger: #b8412f;
 
   /* Evidence semantic colours (always paired with a text label) */
-  --color-ev-verified: #4f7f3a;
-  --color-ev-sourced: #2f6b5a;
-  --color-ev-estimate: #b08d5b;
-  --color-ev-assumption: #c48a1f;
-  --color-ev-calculated: #4f6b8a;
-  --color-ev-expert: #6b4a2e;
-  --color-ev-research: #77736a;
+  --color-ev-verified: #2f8f5b;
+  --color-ev-sourced: #1f9e9a;
+  --color-ev-estimate: #b8864a;
+  --color-ev-assumption: #d29a1c;
+  --color-ev-calculated: #4d6f93;
+  --color-ev-expert: #6d4527;
+  --color-ev-research: #75736a;
 
   /* Typography */
   --font-display: var(--font-manrope), "Manrope", ui-sans-serif, system-ui, sans-serif;
@@ -56,21 +71,27 @@
   --font-mono: var(--font-jetbrains), "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 
   --text-display: clamp(3rem, 8vw, 7.5rem);
-  --text-h1: clamp(2.5rem, 5vw, 4.5rem);
-  --text-h2: clamp(1.9rem, 3.5vw, 3rem);
-  --text-h3: 1.5rem;
-  --text-h4: 1.125rem;
+  --text-h1: clamp(2.4rem, 5vw, 4.4rem);
+  --text-h2: clamp(1.8rem, 3.4vw, 2.9rem);
+  --text-h3: 1.45rem;
+  --text-h4: 1.1rem;
   --text-body: 1.0625rem;
-  --text-body-lg: 1.25rem;
+  --text-body-lg: 1.2rem;
   --text-caption: 0.8125rem;
   --text-overline: 0.6875rem;
   --text-data: 0.8125rem;
   --text-badge: 0.625rem;
 
   /* Radius */
-  --radius-data: 2px;
-  --radius-control: 6px;
-  --radius-media: 12px;
+  --radius-data: 4px;
+  --radius-control: 10px;
+  --radius-media: 18px;
+  --radius-card: 16px;
+
+  /* Shadows */
+  --shadow-card: 0 1px 2px rgba(23, 25, 23, 0.04), 0 8px 24px -12px rgba(23, 25, 23, 0.18);
+  --shadow-card-hover: 0 2px 4px rgba(23, 25, 23, 0.05), 0 20px 40px -16px rgba(23, 25, 23, 0.28);
+  --shadow-glow: 0 0 0 1px rgba(164, 230, 74, 0.25), 0 12px 40px -10px rgba(164, 230, 74, 0.35);
 
   /* Motion */
   --ease-narrative: cubic-bezier(0.2, 0.7, 0.2, 1);
@@ -80,7 +101,7 @@
 
   /* Layout */
   --container-page: 1440px;
-  --spacing-section: clamp(4rem, 10vw, 9rem);
+  --spacing-section: clamp(4rem, 9vw, 8rem);
 }
 
 /* ------------------------------------------------------------------------
@@ -89,6 +110,18 @@
 :root {
   color-scheme: light;
   --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+  /* Gradients (referenced by surfaces and utilities) */
+  --g-dark: linear-gradient(160deg, #0b2a1e 0%, #06150f 45%, #071a12 100%);
+  --g-dark-glow: radial-gradient(60% 55% at 85% 0%, rgba(164, 230, 74, 0.16), transparent 60%), radial-gradient(45% 45% at 5% 100%, rgba(31, 158, 154, 0.18), transparent 60%);
+  --g-charcoal: linear-gradient(160deg, #1c211e 0%, #121614 60%, #0f1412 100%);
+  --g-charcoal-glow: radial-gradient(55% 50% at 90% 10%, rgba(201, 111, 59, 0.16), transparent 60%), radial-gradient(40% 40% at 10% 95%, rgba(79, 176, 122, 0.14), transparent 60%);
+  --g-ivory: linear-gradient(180deg, #faf7f0 0%, #f6f1e6 100%);
+  --g-ivory-glow: radial-gradient(50% 40% at 100% 0%, rgba(164, 230, 74, 0.14), transparent 60%), radial-gradient(40% 40% at 0% 100%, rgba(72, 196, 190, 0.12), transparent 60%);
+  --g-fibre: linear-gradient(160deg, #f6efe2 0%, #eddcc0 100%);
+  --g-accent: linear-gradient(135deg, #a4e64a 0%, #2f8f5b 100%);
+  --g-copper: linear-gradient(135deg, #e08a55 0%, #b8864a 100%);
+  --g-aqua: linear-gradient(135deg, #48c4be 0%, #1f9e9a 100%);
+  --g-text: linear-gradient(110deg, #e2f9b3 0%, #a4e64a 40%, #48c4be 100%);
 }
 
 html { scroll-behavior: smooth; }
@@ -107,28 +140,30 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-::selection { background: var(--color-leaf-300); color: var(--color-coconut-950); }
+::selection { background: var(--color-lime-400); color: var(--color-coconut-950); }
 
-:focus-visible { outline: 2px solid var(--color-leaf-500); outline-offset: 3px; border-radius: 2px; }
-.dark :focus-visible, [data-theme="dark"] :focus-visible { outline-color: var(--color-leaf-300); }
+:focus-visible { outline: 2px solid var(--color-leaf-500); outline-offset: 3px; border-radius: 4px; }
+.dark :focus-visible, [data-theme="dark"] :focus-visible, .surface-dark :focus-visible, .surface-charcoal :focus-visible { outline-color: var(--color-lime-400); }
 
 /* ------------------------------------------------------------------------
    TYPOGRAPHY UTILITIES
    ------------------------------------------------------------------------ */
-@utility t-display { font-family: var(--font-display); font-weight: 800; font-size: var(--text-display); line-height: 0.95; letter-spacing: -0.03em; }
-@utility t-h1 { font-family: var(--font-display); font-weight: 800; font-size: var(--text-h1); line-height: 1; letter-spacing: -0.02em; }
-@utility t-h2 { font-family: var(--font-display); font-weight: 700; font-size: var(--text-h2); line-height: 1.05; letter-spacing: -0.02em; }
-@utility t-h3 { font-family: var(--font-display); font-weight: 700; font-size: var(--text-h3); line-height: 1.2; letter-spacing: -0.01em; }
-@utility t-h4 { font-family: var(--font-display); font-weight: 600; font-size: var(--text-h4); line-height: 1.3; }
+@utility t-display { font-family: var(--font-display); font-weight: 800; font-size: var(--text-display); line-height: 0.95; letter-spacing: -0.035em; }
+@utility t-h1 { font-family: var(--font-display); font-weight: 800; font-size: var(--text-h1); line-height: 1.02; letter-spacing: -0.025em; }
+@utility t-h2 { font-family: var(--font-display); font-weight: 700; font-size: var(--text-h2); line-height: 1.08; letter-spacing: -0.02em; }
+@utility t-h3 { font-family: var(--font-display); font-weight: 700; font-size: var(--text-h3); line-height: 1.2; letter-spacing: -0.012em; }
+@utility t-h4 { font-family: var(--font-display); font-weight: 600; font-size: var(--text-h4); line-height: 1.3; letter-spacing: -0.005em; }
 @utility t-body-lg { font-size: var(--text-body-lg); line-height: 1.6; }
-@utility t-caption { font-size: var(--text-caption); line-height: 1.4; color: var(--color-neutral-500); }
-@utility t-overline { font-size: var(--text-overline); font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; line-height: 1; }
-@utility t-metric { font-family: var(--font-mono); font-weight: 500; font-variant-numeric: tabular-nums; letter-spacing: -0.02em; }
+@utility t-caption { font-size: var(--text-caption); line-height: 1.45; color: var(--color-neutral-500); }
+@utility t-overline { font-size: var(--text-overline); font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; line-height: 1; }
+@utility t-metric { font-family: var(--font-display); font-weight: 700; font-variant-numeric: tabular-nums; letter-spacing: -0.03em; }
 @utility t-data { font-family: var(--font-mono); font-size: var(--text-data); font-variant-numeric: tabular-nums; }
 @utility t-badge { font-family: var(--font-mono); font-size: var(--text-badge); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
 @utility t-source { font-size: var(--text-caption); font-style: italic; color: var(--color-neutral-500); }
 @utility t-nav { font-size: 0.875rem; font-weight: 500; }
-@utility t-cta { font-size: 0.9375rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
+@utility t-cta { font-size: 0.9rem; font-weight: 700; letter-spacing: 0.01em; }
+/* Gradient headline accent — use on a <span> inside a dark heading */
+@utility t-gradient { background: var(--g-text); -webkit-background-clip: text; background-clip: text; color: transparent; }
 
 /* Prose for long-form */
 .prose-coconut { max-width: 68ch; }
@@ -137,39 +172,73 @@ body {
 .prose-coconut ul { margin: 0 0 1.1em 1.2em; list-style: disc; }
 .prose-coconut li { margin-block: 0.25em; }
 .prose-coconut strong { font-weight: 600; color: var(--color-neutral-900); }
-.dark .prose-coconut strong { color: var(--color-cocos); }
+.dark .prose-coconut strong, .surface-dark .prose-coconut strong { color: var(--color-cocos); }
 
-/* Section surfaces */
-.surface-dark { background: var(--color-coconut-950); color: var(--color-ivory-100); position: relative; }
-.surface-dark::after { content: ""; position: absolute; inset: 0; background-image: var(--grain); opacity: 0.045; pointer-events: none; mix-blend-mode: overlay; }
-.surface-charcoal { background: var(--color-charcoal-900); color: var(--color-ivory-100); position: relative; }
-.surface-charcoal::after { content: ""; position: absolute; inset: 0; background-image: var(--grain); opacity: 0.05; pointer-events: none; }
-.surface-ivory { background: var(--color-ivory-50); color: var(--color-neutral-900); }
+/* ------------------------------------------------------------------------
+   SURFACES — every section uses one of these; gradients + soft glows
+   ------------------------------------------------------------------------ */
+.surface-dark { background: var(--g-dark-glow), var(--g-dark); color: var(--color-ivory-100); position: relative; isolation: isolate; }
+.surface-dark::after { content: ""; position: absolute; inset: 0; background-image: var(--grain); opacity: 0.05; pointer-events: none; mix-blend-mode: overlay; z-index: 0; }
+.surface-charcoal { background: var(--g-charcoal-glow), var(--g-charcoal); color: var(--color-ivory-100); position: relative; isolation: isolate; }
+.surface-charcoal::after { content: ""; position: absolute; inset: 0; background-image: var(--grain); opacity: 0.05; pointer-events: none; z-index: 0; }
+.surface-ivory { background: var(--g-ivory-glow), var(--g-ivory); color: var(--color-neutral-900); }
 .surface-white { background: var(--color-cocos); color: var(--color-neutral-900); }
-.surface-fibre { background: linear-gradient(180deg, var(--color-ivory-100), var(--color-fibre-200)); color: var(--color-neutral-900); }
+.surface-fibre { background: var(--g-fibre); color: var(--color-neutral-900); }
+/* Hero mesh: dark ground with three soft colour fields */
+.surface-hero { background: radial-gradient(50% 60% at 78% 12%, rgba(164, 230, 74, 0.22), transparent 62%), radial-gradient(40% 50% at 10% 90%, rgba(31, 158, 154, 0.22), transparent 60%), radial-gradient(35% 40% at 60% 100%, rgba(201, 111, 59, 0.14), transparent 60%), var(--g-dark); color: var(--color-ivory-100); position: relative; isolation: isolate; }
+.surface-hero::after { content: ""; position: absolute; inset: 0; background-image: var(--grain); opacity: 0.06; pointer-events: none; mix-blend-mode: overlay; z-index: 0; }
+
+/* Gradient fills */
+.bg-accent { background: var(--g-accent); }
+.bg-copper { background: var(--g-copper); }
+.bg-aqua { background: var(--g-aqua); }
+/* Thin gradient rule under headings */
+.rule-accent { display: block; width: 56px; height: 4px; border-radius: 999px; background: var(--g-accent); }
 
 /* Fibre line pattern (subtle) */
-.pattern-fibre { background-image: repeating-linear-gradient(115deg, rgba(176, 141, 91, 0.08) 0 1px, transparent 1px 9px); }
+.pattern-fibre { background-image: repeating-linear-gradient(115deg, rgba(184, 134, 74, 0.08) 0 1px, transparent 1px 9px); }
 
 /* Blueprint grid */
-.pattern-blueprint { background-color: #0f2233; background-image: linear-gradient(rgba(169, 197, 142, 0.12) 1px, transparent 1px), linear-gradient(90deg, rgba(169, 197, 142, 0.12) 1px, transparent 1px); background-size: 24px 24px; }
+.pattern-blueprint { background-color: #0f2233; background-image: linear-gradient(rgba(143, 216, 168, 0.12) 1px, transparent 1px), linear-gradient(90deg, rgba(143, 216, 168, 0.12) 1px, transparent 1px); background-size: 24px 24px; }
+
+/* Dotted grid for dark heroes */
+.pattern-dots { background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px); background-size: 22px 22px; }
+
+/* ------------------------------------------------------------------------
+   COMPONENTS (shared classes)
+   ------------------------------------------------------------------------ */
+/* Card: light surface with soft shadow and lift on hover */
+.card { background: var(--color-cocos); border: 1px solid var(--color-neutral-200); border-radius: var(--radius-card); box-shadow: var(--shadow-card); transition: transform var(--duration-ui) var(--ease-narrative), box-shadow var(--duration-ui) var(--ease-narrative), border-color var(--duration-ui); }
+.card-hover:hover { transform: translateY(-3px); box-shadow: var(--shadow-card-hover); border-color: var(--color-leaf-300); }
+/* Glass card for dark surfaces */
+.card-glass { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: var(--radius-card); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); transition: background var(--duration-ui), border-color var(--duration-ui), transform var(--duration-ui) var(--ease-narrative); }
+.card-glass:hover { background: rgba(255, 255, 255, 0.08); border-color: rgba(164, 230, 74, 0.45); }
+.card-glass-hover:hover { transform: translateY(-3px); }
 
 /* Hairline */
 .hairline { border-color: var(--color-neutral-200); }
-.dark .hairline, .surface-dark .hairline, .surface-charcoal .hairline { border-color: rgba(255, 255, 255, 0.12); }
+.dark .hairline, .surface-dark .hairline, .surface-charcoal .hairline, .surface-hero .hairline { border-color: rgba(255, 255, 255, 0.12); }
 
 /* Tables */
-.table-data { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
-.table-data th { text-align: left; font-weight: 600; font-size: var(--text-overline); letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-neutral-500); padding: 0.6rem 0.75rem; border-bottom: 1px solid var(--color-neutral-200); }
-.table-data td { padding: 0.65rem 0.75rem; border-bottom: 1px solid var(--color-neutral-200); vertical-align: top; }
+.table-data { width: 100%; border-collapse: separate; border-spacing: 0; font-size: 0.9rem; }
+.table-data th { text-align: left; font-weight: 700; font-size: var(--text-overline); letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-neutral-500); padding: 0.7rem 0.85rem; border-bottom: 1px solid var(--color-neutral-200); background: var(--color-neutral-50); }
+.table-data th:first-child { border-top-left-radius: 12px; }
+.table-data th:last-child { border-top-right-radius: 12px; }
+.table-data td { padding: 0.75rem 0.85rem; border-bottom: 1px solid var(--color-neutral-200); vertical-align: top; }
+.table-data tbody tr:hover td { background: rgba(164, 230, 74, 0.06); }
 .table-data tr:last-child td { border-bottom: 0; }
+.surface-dark .table-data th, .surface-charcoal .table-data th { background: rgba(255,255,255,0.04); color: var(--color-leaf-300); }
 .surface-dark .table-data th, .surface-dark .table-data td, .surface-charcoal .table-data th, .surface-charcoal .table-data td { border-color: rgba(255,255,255,0.12); }
 
 /* Animations (reduced-motion safe via global rule above) */
 @keyframes draw { to { stroke-dashoffset: 0; } }
 @keyframes flow { to { stroke-dashoffset: -40; } }
 @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
 .anim-rise { animation: rise var(--duration-narrative) var(--ease-narrative) both; }
+.anim-rise-2 { animation: rise var(--duration-narrative) var(--ease-narrative) 120ms both; }
+.anim-rise-3 { animation: rise var(--duration-narrative) var(--ease-narrative) 240ms both; }
+.anim-float { animation: float 7s ease-in-out infinite; }
 .anim-flow { stroke-dasharray: 8 8; animation: flow 1.6s linear infinite; }
 .anim-draw { stroke-dasharray: 1000; stroke-dashoffset: 1000; animation: draw 1.8s var(--ease-narrative) forwards; }
 
@@ -177,7 +246,7 @@ body {
 .scroll-x { overflow-x: auto; scrollbar-width: thin; }
 
 /* Skeleton */
-.skeleton { background: linear-gradient(90deg, var(--color-neutral-100), var(--color-neutral-200), var(--color-neutral-100)); background-size: 200% 100%; animation: shimmer 1.4s linear infinite; border-radius: 4px; }
+.skeleton { background: linear-gradient(90deg, var(--color-neutral-100), var(--color-neutral-200), var(--color-neutral-100)); background-size: 200% 100%; animation: shimmer 1.4s linear infinite; border-radius: 6px; }
 @keyframes shimmer { to { background-position: -200% 0; } }
 
 /* Touch targets */

@@ -12,7 +12,7 @@ export interface MapState { id: string; name: string; slug: string; code: string
 export function IndiaMap({ states, activeId, onSelect, dark }: { states: MapState[]; activeId: string | null; onSelect: (id: string) => void; dark?: boolean }) {
   const max = Math.max(...states.map((s) => s.score), 1);
   const byId = Object.fromEntries(states.map((s) => [s.id, s]));
-  const shade = (s: number) => `rgba(126,165,95,${0.3 + 0.65 * (s / max)})`;
+  const shade = (s: number) => `rgba(79,176,122,${0.3 + 0.65 * (s / max)})`;
   const base = dark ? "rgba(255,255,255,0.05)" : "rgba(0,0,0,0.04)";
   const stroke = dark ? "rgba(255,255,255,0.28)" : "rgba(0,0,0,0.28)";
   return (

@@ -45,7 +45,7 @@ export function AnatomyHero({ layers }: { layers: CoconutLayer[] }) {
             if (!l) return null;
             const on = l.order === activeOrder;
             return (
-              <button key={h.order} onClick={() => setActiveOrder(l.order)} aria-label={`${l.name}: show industry context`} aria-pressed={on} className={cx("tap absolute -translate-x-1/2 -translate-y-1/2 rounded-full border-2 font-bold shadow-md transition-transform", on ? "h-9 w-9 scale-110 border-leaf-500 bg-coconut-950 text-ivory-50" : "h-8 w-8 border-white bg-leaf-500 text-coconut-950 hover:scale-110")} style={{ left: `${h.x}%`, top: `${h.y}%` }}>
+              <button key={h.order} onClick={() => setActiveOrder(l.order)} aria-label={`${l.name}: show industry context`} aria-pressed={on} className={cx("tap absolute -translate-x-1/2 -translate-y-1/2 rounded-full border-2 font-bold shadow-md transition-transform", on ? "h-9 w-9 scale-110 border-leaf-500 bg-coconut-950 text-ivory-50" : "h-8 w-8 border-white bg-accent text-coconut-950 hover:scale-110")} style={{ left: `${h.x}%`, top: `${h.y}%` }}>
                 {String(l.order).padStart(2, "0")}
               </button>
             );
@@ -57,7 +57,7 @@ export function AnatomyHero({ layers }: { layers: CoconutLayer[] }) {
         <ol className="flex flex-wrap gap-2" role="tablist" aria-label="Coconut layers">
           {ordered.map((l) => (
             <li key={l.id}>
-              <button role="tab" aria-selected={activeOrder === l.order} onClick={() => setActiveOrder(l.order)} className={cx("tap rounded-full border px-3.5 py-2 text-[0.82rem] font-semibold", activeOrder === l.order ? "bg-leaf-500 text-coconut-950 border-leaf-500" : "border-white/25 text-ivory-50 hover:border-leaf-300")}>
+              <button role="tab" aria-selected={activeOrder === l.order} onClick={() => setActiveOrder(l.order)} className={cx("tap rounded-full border px-3.5 py-2 text-[0.82rem] font-semibold", activeOrder === l.order ? "bg-accent text-coconut-950 border-transparent" : "border-white/25 text-ivory-50 hover:border-lime-400")}>
                 {String(l.order).padStart(2, "0")} {l.name}
               </button>
             </li>
@@ -75,7 +75,7 @@ export function AnatomyHero({ layers }: { layers: CoconutLayer[] }) {
                 <ul className="flex flex-wrap gap-2">{active.products.map((p) => <li key={p.href}><Link href={p.href} className="t-nav rounded-full border border-white/25 px-3 py-1.5 text-ivory-50 hover:border-leaf-300 tap">{p.name}</Link></li>)}</ul>
               </div>
             )}
-            <Link href={`/explore/${active.slug}`} className="t-cta mt-6 inline-flex items-center gap-2 rounded-[var(--radius-control)] bg-leaf-500 px-5 py-3 text-coconut-950 tap">Explore {active.name} →</Link>
+            <Link href={`/explore/${active.slug}`} className="t-cta mt-6 inline-flex items-center gap-2 rounded-full bg-accent px-5 py-3 text-coconut-950 shadow-[var(--shadow-glow)] tap">Explore {active.name} →</Link>
           </div>
         )}
       </div>

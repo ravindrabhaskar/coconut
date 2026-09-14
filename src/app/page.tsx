@@ -4,8 +4,8 @@ import { productGapReport, componentGapReport, aggregateCoverage } from "@/servi
 import { planFactory } from "@/lib/calc/factoryPlanner";
 import { scoreLocation } from "@/lib/calc/scoring";
 import { formatQuantity, EVIDENCE_LABEL } from "@/lib/format";
-import { Container, Section, SectionHeader, LinkButton, Arrow, Overline, Badge } from "@/components/ui/primitives";
-import { Journey } from "@/components/ui/hub";
+import { Container, Section, SectionHeader, LinkButton, Arrow, Overline, Badge, cx } from "@/components/ui/primitives";
+import { Journey, HubGrid } from "@/components/ui/hub";
 import { AnatomyImage } from "@/components/viz/coconut/anatomy-image";
 import { IndiaMapPreview } from "@/components/viz/india-map-preview";
 import { EvidenceBadge } from "@/components/ui/evidence";
@@ -64,21 +64,24 @@ export default async function HomePage() {
   return (
     <>
       {/* 1 — HERO */}
-      <section className="surface-dark -mt-16 pt-24 pb-14 md:pt-28 md:pb-20">
+      <section className="surface-hero -mt-16 overflow-hidden pt-28 pb-16 md:pt-36 md:pb-24">
+        <div aria-hidden="true" className="pattern-dots absolute inset-0 opacity-70 [mask-image:radial-gradient(60%_60%_at_75%_30%,#000,transparent)]" />
+        <div aria-hidden="true" className="anim-float absolute -right-24 top-24 hidden h-[420px] w-[420px] rounded-full border border-lime-400/15 lg:block" />
+        <div aria-hidden="true" className="absolute -right-6 top-44 hidden h-[260px] w-[260px] rounded-full border border-aqua-400/20 lg:block" />
         <Container className="relative z-[1]">
-          <div className="grid gap-10 lg:grid-cols-[1fr_1fr] lg:items-end">
+          <div className="grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
             <div>
-              <Overline className="text-leaf-300 mb-6">One coconut. An entire industry.</Overline>
-              <h1 className="t-h1 text-ivory-50 max-w-[16ch]">The operating system for the coconut processing industry.</h1>
+              <Overline className="anim-rise mb-6 flex items-center gap-3 text-lime-400"><span className="h-px w-8 bg-accent" aria-hidden="true" />One coconut. An entire industry.</Overline>
+              <h1 className="t-h1 anim-rise max-w-[15ch] text-ivory-50">The operating system for the <span className="t-gradient">coconut processing</span> industry.</h1>
               <p className="t-body-lg mt-6 max-w-[54ch] text-ivory-100/75">Explore products, processing technologies, machinery, factory economics, markets and verified industry data in one connected platform — where every important number shows its evidence.</p>
-              <div className="mt-8 flex flex-wrap gap-3">
+              <div className="mt-9 flex flex-wrap gap-3">
                 <LinkButton href="/explore" variant="light">Explore the coconut value chain <Arrow /></LinkButton>
                 <LinkButton href="/factory" variant="outline-light">Plan a factory</LinkButton>
               </div>
             </div>
-            <dl className="grid grid-cols-2 gap-x-6 gap-y-5 text-ivory-50 sm:grid-cols-4 lg:grid-cols-2 xl:grid-cols-4">
-              {[["Components", components.length], ["Products", products.length], ["Engineering models", scaleModels.length], ["Export markets", countries.filter((c) => c.productIds.length).length], ["Customer segments", customers.length], ["Sources on file", sources.length], ["Fields with evidence", `${agg.coveragePct}%`], ["Verified / sourced", `${agg.sourcedPct}%`]].map(([k, v]) => (
-                <div key={String(k)} className="border-t border-ivory-100/20 pt-2"><dt className="t-overline text-ivory-100/50">{k}</dt><dd className="t-metric mt-1 text-2xl">{v}</dd></div>
+            <dl className="grid grid-cols-2 gap-3 text-ivory-50 sm:grid-cols-4 lg:grid-cols-2">
+              {[["Components", components.length, ""], ["Products", products.length, ""], ["Engineering models", scaleModels.length, ""], ["Export markets", countries.filter((c) => c.productIds.length).length, ""], ["Customer segments", customers.length, ""], ["Sources on file", sources.length, ""], ["Fields with evidence", `${agg.coveragePct}%`, "accent"], ["Verified / sourced", `${agg.sourcedPct}%`, "accent"]].map(([k, v, tone]) => (
+                <div key={String(k)} className={cx("card-glass p-4", tone === "accent" && "border-lime-400/40")}><dt className="t-overline text-ivory-100/55">{k}</dt><dd className={cx("t-metric mt-2 text-3xl", tone === "accent" && "t-gradient")}>{v}</dd></div>
               ))}
             </dl>
           </div>
@@ -105,7 +108,7 @@ export default async function HomePage() {
       <Section surface="white">
         <Container>
           <SectionHeader overline="Products" title="What the coconut becomes." lede="Raw material, indicative investment, yield, market and modelled factory scale — with evidence badges, not marketing numbers." className="mb-8" />
-          <div className="overflow-x-auto">
+          <div className="card overflow-x-auto p-2">
             <table className="table-data">
               <thead><tr><th>Product</th><th>Raw material</th><th>Yield</th><th>Investment (CAPEX)</th><th>Market</th><th>Factory scale modelled</th></tr></thead>
               <tbody>
@@ -138,7 +141,7 @@ export default async function HomePage() {
               <SectionHeader overline="Factory planning" title={<span className="text-ivory-50">Choose a product and a capacity. The platform derives the plant.</span>} lede={<span className="text-ivory-100/70">Below is a live run of the planner on the {demoProduct.name} engineering model — {formatQuantity(demoModel.capacity)}. Every figure is CALCULATED from labelled assumptions; costs stay RESEARCH REQUIRED until quotations exist.</span>} className="mb-6" />
               <LinkButton href={`/build/${demoProduct.slug}`} variant="light">Open this plan <Arrow /></LinkButton>
             </div>
-            <dl className="grid grid-cols-2 gap-x-6 gap-y-5 text-ivory-50 sm:grid-cols-3">
+            <dl className="grid grid-cols-2 gap-3 text-ivory-50 sm:grid-cols-3">
               {[
                 ["Raw material / day", demoModel.rawMaterialPerDay.value !== undefined ? `${num(demoModel.rawMaterialPerDay.value)} ${demoModel.rawMaterialPerDay.unit}` : "research required"],
                 ["Machines in line", String(demoProduct.machineIds.length)],
@@ -149,7 +152,7 @@ export default async function HomePage() {
                 ["Investment", demo.capexInr !== undefined ? inr(demo.capexInr) : "RESEARCH REQUIRED"],
                 ["Operating cost", "your inputs → Financial model"],
                 ["Output / revenue / profitability", "computed, 3 scenarios"],
-              ].map(([k, v]) => <div key={k} className="border-t border-ivory-100/20 pt-2"><dt className="t-overline text-ivory-100/50">{k}</dt><dd className="t-metric mt-1 text-lg leading-tight">{v}</dd></div>)}
+              ].map(([k, v]) => <div key={k} className="card-glass p-4"><dt className="t-overline text-ivory-100/55">{k}</dt><dd className="t-metric mt-2 text-lg leading-tight">{v}</dd></div>)}
             </dl>
           </div>
         </Container>
@@ -168,11 +171,7 @@ export default async function HomePage() {
       <Section surface="ivory">
         <Container>
           <SectionHeader overline="Markets" title="Products, markets, customers, exports, pricing, trade." lede="Demand modelled as customer segments with specifications; trade as export markets with requirements; prices only as dated, sourced records." className="mb-8" />
-          <div className="grid gap-px overflow-hidden rounded-[var(--radius-media)] border hairline bg-neutral-200 sm:grid-cols-2 lg:grid-cols-4">
-            {[["Customers", `${customers.length} segments`, "/customers"], ["Export markets", `${countries.filter((c) => c.productIds.length).length} markets with requirements`, "/export"], ["Price intelligence", "dated records only — register empty until captured", "/markets/prices"], ["Government schemes", `${schemes.length} programmes · ${schemes.filter((s) => s.subsidy.evidence === "VERIFIED_FACT").length} verified`, "/business/schemes"]].map(([t, b, h]) => (
-              <Link key={h} href={h} className="group block bg-cocos p-6 hover:bg-ivory-100"><p className="t-h4 group-hover:underline underline-offset-4">{t}</p><p className="t-caption mt-2">{b}</p></Link>
-            ))}
-          </div>
+          <HubGrid columns={4} items={[{ title: "Customers", body: `${customers.length} segments`, href: "/customers" }, { title: "Export markets", body: `${countries.filter((c) => c.productIds.length).length} markets with requirements`, href: "/export" }, { title: "Price intelligence", body: "dated records only — register empty until captured", href: "/markets/prices" }, { title: "Government schemes", body: `${schemes.length} programmes · ${schemes.filter((s) => s.subsidy.evidence === "VERIFIED_FACT").length} verified`, href: "/business/schemes" }]} />
         </Container>
       </Section>
 
@@ -187,11 +186,11 @@ export default async function HomePage() {
             </div>
             <div>
               <p className="t-overline text-neutral-500 mb-3">Verified this cycle from primary documents</p>
-              <ul className="space-y-2 text-[0.92rem]">
-                <li className="border-t hairline pt-2"><strong>Desiccated coconut</strong> — FSSAI 2.3.45 (moisture ≤3.0%) vs Codex STAN 177 (≤4%); acidity, oil, ash, sieve sizes.</li>
-                <li className="border-t hairline pt-2"><strong>Virgin coconut oil</strong> — FSSAI 2.2.1(1A) v5 2025: moisture, FFA/acid value, PV, iodine, Polenske; Codex STAN 210 fatty acids.</li>
-                <li className="border-t hairline pt-2"><strong>Coconut milk, cream, milk powder</strong> — FSSAI 2.3.51 / 2.3.63 and Codex STAN 240 composition tables.</li>
-                <li className="border-t hairline pt-2"><strong>PMFME scheme</strong> — 35% credit-linked subsidy, ₹10 lakh ceiling (PIB, Sep 2025).</li>
+              <ul className="card divide-y hairline p-5 text-[0.92rem] [&>li]:py-3 [&>li:first-child]:pt-0 [&>li:last-child]:pb-0">
+                <li><strong>Desiccated coconut</strong> — FSSAI 2.3.45 (moisture ≤3.0%) vs Codex STAN 177 (≤4%); acidity, oil, ash, sieve sizes.</li>
+                <li><strong>Virgin coconut oil</strong> — FSSAI 2.2.1(1A) v5 2025: moisture, FFA/acid value, PV, iodine, Polenske; Codex STAN 210 fatty acids.</li>
+                <li><strong>Coconut milk, cream, milk powder</strong> — FSSAI 2.3.51 / 2.3.63 and Codex STAN 240 composition tables.</li>
+                <li><strong>PMFME scheme</strong> — 35% credit-linked subsidy, ₹10 lakh ceiling (PIB, Sep 2025).</li>
               </ul>
               <p className="t-caption mt-3">{research.length} research records · primary PDFs stored in <code className="t-data">research/</code>.</p>
             </div>
@@ -203,16 +202,15 @@ export default async function HomePage() {
       <Section surface="ivory">
         <Container>
           <SectionHeader overline="Who it is for" title="The same dataset, eight ways in." className="mb-8" />
-          <ul className="grid gap-px overflow-hidden rounded-[var(--radius-media)] border hairline bg-neutral-200 sm:grid-cols-2 lg:grid-cols-4">
-            {AUDIENCES.map(([who, what, href]) => <li key={who} className="bg-cocos hover:bg-ivory-100"><Link href={href} className="group block p-5"><p className="t-h4 group-hover:underline underline-offset-4">{who}</p><p className="t-caption mt-1">{what}</p></Link></li>)}
-          </ul>
+          <HubGrid columns={4} items={AUDIENCES.map(([who, what, href]) => ({ title: who, body: what, href }))} />
         </Container>
       </Section>
 
       {/* 10 — FINAL CTA */}
-      <section className="surface-dark py-[var(--spacing-section)]">
+      <section className="surface-hero overflow-hidden py-[var(--spacing-section)]">
+        <div aria-hidden="true" className="pattern-dots absolute inset-0 opacity-60 [mask-image:radial-gradient(50%_70%_at_90%_50%,#000,transparent)]" />
         <Container className="relative z-[1]">
-          <p className="t-h1 max-w-[18ch] text-ivory-50">Start with a product. Or plan your factory.</p>
+          <p className="t-h1 max-w-[18ch] text-ivory-50">Start with a product. <span className="t-gradient">Or plan your factory.</span></p>
           <p className="mt-5 max-w-[52ch] text-ivory-100/70">Do not buy machinery until you validate the customer. Do not assume demand, margins, subsidies or exports. The platform is built to make that discipline easy.</p>
           <div className="mt-8 flex flex-wrap gap-3"><LinkButton href="/products" variant="light">Start with a product <Arrow /></LinkButton><LinkButton href="/factory" variant="outline-light">Plan your factory</LinkButton></div>
         </Container>

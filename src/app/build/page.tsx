@@ -18,11 +18,11 @@ export default async function BuildIndex() {
       </PageIntro>
       <Section surface="ivory">
         <Container>
-          <ul className="grid gap-px overflow-hidden rounded-[var(--radius-media)] border hairline bg-neutral-200 sm:grid-cols-2 lg:grid-cols-3">
+          <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {products.map((p) => {
               const m = models.filter((x) => x.productId === p.id);
               return (
-                <li key={p.id} className="bg-cocos p-6 hover:bg-ivory-100">
+                <li key={p.id} className="card card-hover p-6">
                   <Link href={`/build/${p.slug}`} className="group block h-full">
                     <p className="t-caption">{p.sourceComponentIds.map(compName).join(" · ")}</p>
                     <p className="t-h4 mt-2 group-hover:underline underline-offset-4">{p.name}</p>

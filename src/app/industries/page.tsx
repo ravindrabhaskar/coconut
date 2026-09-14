@@ -12,8 +12,8 @@ export default async function IndustriesPage() {
     <>
       <PageIntro overline="Markets" title="Industries." lede="One coconut feeds eleven industries. Each industry page lists the products, components and opportunities that serve it." breadcrumbs={[{ label: "Industries" }]} />
       <Section surface="ivory"><Container>
-        <ul className="grid gap-px overflow-hidden rounded-[var(--radius-media)] border hairline bg-neutral-200 sm:grid-cols-2 lg:grid-cols-4">
-          {industries.map((i) => { const n = products.filter((p) => p.industryIds.includes(i.id)).length; return <li key={i.id} className="bg-cocos p-6 hover:bg-ivory-100"><Link href={`/industries/${i.slug}`} className="group block h-full"><p className="t-h4 group-hover:underline underline-offset-4">{i.name}</p><p className="t-caption mt-2">{i.summary}</p><p className="t-data mt-3 text-leaf-500">{n} products →</p></Link></li>; })}
+        <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {industries.map((i) => { const n = products.filter((p) => p.industryIds.includes(i.id)).length; return <li key={i.id} className="card card-hover p-6"><Link href={`/industries/${i.slug}`} className="group block h-full"><p className="t-h4 group-hover:underline underline-offset-4">{i.name}</p><p className="t-caption mt-2">{i.summary}</p><p className="t-data mt-3 text-leaf-500">{n} products →</p></Link></li>; })}
         </ul>
       </Container></Section>
     </>
