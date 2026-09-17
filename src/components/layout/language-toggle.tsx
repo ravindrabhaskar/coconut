@@ -93,7 +93,7 @@ export function LanguageToggle({ dark, className }: { dark?: boolean; className?
     <div role="radiogroup" aria-label="Language / భాష" className={cx("notranslate inline-flex rounded-full border p-0.5", dark ? "border-ivory-100/25" : "border-neutral-300 bg-cocos", className)} translate="no">
       {([["en", "EN"], ["te", "తెలుగు"]] as [Lang, string][]).map(([l, label]) => (
         <button key={l} role="radio" aria-checked={lang === l} lang={l} onClick={() => choose(l)}
-          className={cx("rounded-full px-3 py-1.5 text-[0.75rem] font-semibold tracking-wide transition-colors tap min-h-[32px]", lang === l ? (dark ? "bg-accent text-coconut-950" : "bg-coconut-950 text-ivory-50") : dark ? "text-ivory-100/80 hover:text-ivory-50" : "text-neutral-600 hover:text-neutral-900")}>
+          className={cx("whitespace-nowrap rounded-full px-3 py-1.5 text-[0.75rem] font-semibold tracking-wide transition-colors tap min-h-[32px]", lang === l ? (dark ? "bg-accent text-coconut-950" : "bg-coconut-950 text-ivory-50") : dark ? "text-ivory-100/80 hover:text-ivory-50" : "text-neutral-600 hover:text-neutral-900")}>
           {label}
         </button>
       ))}

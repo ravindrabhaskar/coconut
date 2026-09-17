@@ -25,7 +25,7 @@ export function DepthToggle({ dark, className }: { dark?: boolean; className?: s
     <div role="radiogroup" aria-label="Depth of detail" className={cx("inline-flex rounded-full border p-0.5", dark ? "border-ivory-100/25" : "border-neutral-300", className)}>
       {ORDER.map((d) => (
         <button key={d} role="radio" aria-checked={depth === d} onClick={() => setDepth(d)}
-          className={cx("rounded-full px-3 py-1.5 text-[0.75rem] font-semibold tracking-wide transition-colors tap min-h-[32px]", depth === d ? (dark ? "bg-accent text-coconut-950" : "bg-coconut-950 text-ivory-50") : dark ? "text-ivory-100/80 hover:text-ivory-50" : "text-neutral-600 hover:text-neutral-900")}>
+          className={cx("whitespace-nowrap rounded-full px-3 py-1.5 text-[0.75rem] font-semibold tracking-wide transition-colors tap min-h-[32px]", depth === d ? (dark ? "bg-accent text-coconut-950" : "bg-coconut-950 text-ivory-50") : dark ? "text-ivory-100/80 hover:text-ivory-50" : "text-neutral-600 hover:text-neutral-900")}>
           {labels[d]}
         </button>
       ))}

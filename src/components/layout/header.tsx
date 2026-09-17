@@ -32,35 +32,34 @@ function HeaderInner({ nav, pathname }: { nav: NavGroup[]; pathname: string }) {
   const active = open === null ? null : open === -1 ? { label: "More", href: "#", columns: nav.filter((g) => g.secondary).map((g) => ({ heading: g.label, items: g.columns.flatMap((c) => c.items).slice(0, 6) })), featured: undefined } : nav[open];
 
   return (
-    <header className={cx("sticky top-0 z-50 border-b transition-colors duration-300", dark ? "border-transparent bg-coconut-950/0 text-ivory-50" : "border-neutral-200/70 bg-ivory-50/85 text-neutral-900 shadow-[0_8px_30px_-24px_rgba(6,21,15,0.5)] backdrop-blur-xl")}
+    <header className={cx("sticky top-0 z-50 border-b transition-colors duration-300 overflow-x-clip", dark ? "border-transparent bg-coconut-950/0 text-ivory-50" : "border-neutral-200/70 bg-ivory-50/85 text-neutral-900 shadow-[0_8px_30px_-24px_rgba(6,21,15,0.5)] backdrop-blur-xl")}
       onMouseLeave={leave}>
-      <div className="mx-auto flex h-16 max-w-[1440px] items-center justify-between px-5 sm:px-8 lg:px-12">
-        <Link href="/" className="flex items-center gap-3" aria-label="COCONUT home">
+      <div className="mx-auto flex h-16 max-w-[1440px] items-center justify-between gap-4 px-5 sm:px-8 lg:px-12">
+        <Link href="/" className="flex shrink-0 items-center gap-3" aria-label="COCONUT home">
           <span className={cx("inline-flex h-9 w-9 items-center justify-center rounded-xl", dark ? "bg-white/10" : "bg-accent text-coconut-950 shadow-[var(--shadow-glow)]")}><Logo className="h-6 w-6" /></span>
           <span className="t-display notranslate text-[1.05rem] tracking-[-0.02em]" translate="no">COCONUT</span>
-          <span className="hidden t-overline opacity-60 2xl:inline">One coconut. An entire industry.</span>
         </Link>
 
-        <nav aria-label="Primary" className="hidden lg:block">
-          <ul className="flex items-center gap-1">
+        <nav aria-label="Primary" className="hidden min-w-0 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:block">
+          <ul className="flex items-center gap-0.5 whitespace-nowrap">
             {nav.map((g, i) => (
-              <li key={g.label} onMouseEnter={() => enter(i)} onFocus={() => enter(i)} className={cx(g.secondary && "hidden 2xl:block")}>
+              <li key={g.label} onMouseEnter={() => enter(i)} onFocus={() => enter(i)} className={cx(g.secondary && "hidden")}>
                 <Link href={g.href} className={cx("t-nav rounded-full px-3.5 py-2 transition-colors", open === i ? (dark ? "bg-ivory-50/12" : "bg-leaf-200/60 text-coconut-900") : "hover:opacity-80")} aria-expanded={open === i} aria-haspopup="true">
                   {g.label}
                 </Link>
               </li>
             ))}
             {nav.some((g) => g.secondary) && (
-              <li onMouseEnter={() => enter(-1)} onFocus={() => enter(-1)} className="2xl:hidden">
+              <li onMouseEnter={() => enter(-1)} onFocus={() => enter(-1)}>
                 <button className={cx("t-nav rounded-full px-3.5 py-2 transition-colors", open === -1 ? (dark ? "bg-ivory-50/12" : "bg-leaf-200/60 text-coconut-900") : "hover:opacity-80")} aria-expanded={open === -1} aria-haspopup="true">More</button>
               </li>
             )}
           </ul>
         </nav>
 
-        <div className="flex items-center gap-2">
+        <div className="flex shrink-0 items-center gap-2 whitespace-nowrap">
           <SearchButton dark={dark} />
-          <div className="hidden xl:block"><DepthToggle dark={dark} /></div>
+          <div className="hidden min-[1400px]:block"><DepthToggle dark={dark} /></div>
           <LanguageToggle dark={dark} />
           <button className="tap rounded-[var(--radius-control)] p-2 lg:hidden" aria-label="Open menu" aria-expanded={mobile} onClick={() => setMobile(true)}>
             <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true"><path d="M3 6h16M3 11h16M3 16h16" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" /></svg>
@@ -135,7 +134,7 @@ function SearchButton({ dark }: { dark: boolean }) {
   return (
     <Link href="/search" className={cx("t-nav hidden items-center gap-2 rounded-full border px-3.5 py-1.5 md:inline-flex", dark ? "border-ivory-100/25 hover:bg-ivory-50/10" : "border-neutral-300 bg-cocos hover:border-leaf-500")} aria-label="Search the platform">
       <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="7" cy="7" r="5" stroke="currentColor" strokeWidth="1.5" /><path d="M11 11l3.5 3.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" /></svg>
-      Search
+      <span className="hidden min-[1400px]:inline">Search</span>
     </Link>
   );
 }
