@@ -5,6 +5,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import type { NavGroup } from "./nav-data";
 import { DepthToggle } from "./depth";
+import { LanguageToggle } from "./language-toggle";
 import { cx } from "@/components/ui/primitives";
 import { useScrolled } from "@/lib/hooks";
 
@@ -36,21 +37,21 @@ function HeaderInner({ nav, pathname }: { nav: NavGroup[]; pathname: string }) {
       <div className="mx-auto flex h-16 max-w-[1440px] items-center justify-between px-5 sm:px-8 lg:px-12">
         <Link href="/" className="flex items-center gap-3" aria-label="COCONUT home">
           <span className={cx("inline-flex h-9 w-9 items-center justify-center rounded-xl", dark ? "bg-white/10" : "bg-accent text-coconut-950 shadow-[var(--shadow-glow)]")}><Logo className="h-6 w-6" /></span>
-          <span className="t-display text-[1.05rem] tracking-[-0.02em]">COCONUT</span>
-          <span className="hidden t-overline opacity-60 lg:inline">One coconut. An entire industry.</span>
+          <span className="t-display notranslate text-[1.05rem] tracking-[-0.02em]" translate="no">COCONUT</span>
+          <span className="hidden t-overline opacity-60 2xl:inline">One coconut. An entire industry.</span>
         </Link>
 
         <nav aria-label="Primary" className="hidden lg:block">
           <ul className="flex items-center gap-1">
             {nav.map((g, i) => (
-              <li key={g.label} onMouseEnter={() => enter(i)} onFocus={() => enter(i)} className={cx(g.secondary && "hidden xl:block")}>
+              <li key={g.label} onMouseEnter={() => enter(i)} onFocus={() => enter(i)} className={cx(g.secondary && "hidden 2xl:block")}>
                 <Link href={g.href} className={cx("t-nav rounded-full px-3.5 py-2 transition-colors", open === i ? (dark ? "bg-ivory-50/12" : "bg-leaf-200/60 text-coconut-900") : "hover:opacity-80")} aria-expanded={open === i} aria-haspopup="true">
                   {g.label}
                 </Link>
               </li>
             ))}
             {nav.some((g) => g.secondary) && (
-              <li onMouseEnter={() => enter(-1)} onFocus={() => enter(-1)} className="xl:hidden">
+              <li onMouseEnter={() => enter(-1)} onFocus={() => enter(-1)} className="2xl:hidden">
                 <button className={cx("t-nav rounded-full px-3.5 py-2 transition-colors", open === -1 ? (dark ? "bg-ivory-50/12" : "bg-leaf-200/60 text-coconut-900") : "hover:opacity-80")} aria-expanded={open === -1} aria-haspopup="true">More</button>
               </li>
             )}
@@ -59,7 +60,8 @@ function HeaderInner({ nav, pathname }: { nav: NavGroup[]; pathname: string }) {
 
         <div className="flex items-center gap-2">
           <SearchButton dark={dark} />
-          <div className="hidden md:block"><DepthToggle dark={dark} /></div>
+          <div className="hidden xl:block"><DepthToggle dark={dark} /></div>
+          <LanguageToggle dark={dark} />
           <button className="tap rounded-[var(--radius-control)] p-2 lg:hidden" aria-label="Open menu" aria-expanded={mobile} onClick={() => setMobile(true)}>
             <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true"><path d="M3 6h16M3 11h16M3 16h16" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" /></svg>
           </button>
@@ -104,6 +106,9 @@ function HeaderInner({ nav, pathname }: { nav: NavGroup[]; pathname: string }) {
             <div className="mx-auto mb-4 h-1.5 w-12 rounded-full bg-neutral-300" />
             <div className="mb-4 flex items-center justify-between">
               <span className="t-overline text-neutral-500">Depth</span><DepthToggle />
+            </div>
+            <div className="mb-4 flex items-center justify-between">
+              <span className="t-overline text-neutral-500">Language</span><LanguageToggle />
             </div>
             <MobileSearch onDone={() => setMobile(false)} />
             {nav.map((g) => (
